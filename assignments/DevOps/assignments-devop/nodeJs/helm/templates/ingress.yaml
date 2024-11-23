@@ -1,0 +1,39 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: microservices-ingress
+spec:
+  rules:
+    - host: {{ .Values.ingress.hostname }}
+      http:
+        paths:
+          - path: /users
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.userservice.serviceName }}
+                port:
+                  number: {{ .Values.userservice.port }}
+          - path: /post/notify
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.postservice.serviceName }}
+                port:
+                  number: {{ .Values.postservice.port }}
+          - path: /notification/login
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.notificationservice.serviceName }}
+                port:
+                  number: {{ .Values.notificationservice.port }}
+          - path: /notification/protected
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.notificationservice.serviceName }}
+                port:
+                  number: {{ .Values.notificationservice.port }}
+{{- end }}

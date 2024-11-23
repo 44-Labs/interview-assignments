@@ -1,0 +1,59 @@
+name: rds funciton info lambda
+
+on:
+  push:
+    paths:
+      - 'lambda/rds_function.mjs'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20' 
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Zip Lambda Function
+      run: |
+        zip -r lambda-rds_function.zip lambda/rds_function.mjs
+        ls -l lambda-rds_function.zip
+
+    - name: Ensure AWS CLI v2 is installed
+      run: |
+        # Check if AWS CLI v2 is installed
+        if ! command -v aws &> /dev/null
+        then
+          echo "AWS CLI v2 not found. Installing..."
+          sudo apt-get update
+          sudo apt-get install -y unzip curl
+          curl -o "awscli-exe-linux-x86_64.zip" "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+          unzip awscli-exe-linux-x86_64.zip
+          sudo ./aws/install --update
+          aws --version
+        else
+          echo "AWS CLI v2 is already installed."
+        fi
+
+    - name: Upload to S3
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'ap-southeast-1'
+      run: |
+        aws s3 cp lambda-rds_function.zip s3://lambda-s3/lambda-rds_function.zip
+
+    - name: Update Lambda Function
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'ap-southeast-1'
+      run: |
+        aws lambda update-function-code --function-name "rds_function" --s3-bucket "lambda-s3" --s3-key "lambda-rds_function.zip"
