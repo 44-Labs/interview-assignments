@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: notification
+  name: notification
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notification
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: notification
+    spec:
+      containers:
+      - image: onikaze/sample-app-k8s-notification:17
+        name: notification
+        volumeMounts:
+          - name: app-storage
+            mountPath: /app/log
+            subPath: log
+          - name: app-storage
+            mountPath: /app/db
+            subPath: db
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: app-notification-pvc
+status: {}

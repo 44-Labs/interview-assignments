@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: post
+  name: post
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: post
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: post
+    spec:
+      containers:
+      - image: onikaze/sample-app-k8s-post:17
+        name: post
+        volumeMounts:
+          - name: app-storage
+            mountPath: /app/log
+            subPath: log
+          - name: app-storage
+            mountPath: /app/db
+            subPath: db
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: app-post-pvc
+status: {}
+
+
