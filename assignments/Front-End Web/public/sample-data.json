@@ -1,0 +1,212 @@
+[
+  {
+    "golfCourseName": "마우나오션",
+    "currentPrice": 23993,
+    "delta": -120,
+    "source": "DONGA",
+    "collectedAt": "2025-04-26T07:50:50.019280Z"
+  },
+  {
+    "golfCourseName": "마우나오션",
+    "currentPrice": 45229,
+    "delta": 218,
+    "source": "KGA",
+    "collectedAt": "2025-04-28T07:50:50.019533Z"
+  },
+  {
+    "golfCourseName": "마우나오션",
+    "currentPrice": 20825,
+    "delta": 266,
+    "source": "KLPGA",
+    "collectedAt": "2025-04-28T07:50:50.019540Z"
+  },
+  {
+    "golfCourseName": "제주클럽",
+    "currentPrice": 38475,
+    "delta": 169,
+    "source": "DONGA",
+    "collectedAt": "2025-04-23T07:50:50.019552Z"
+  },
+  {
+    "golfCourseName": "제주클럽",
+    "currentPrice": 28055,
+    "delta": -108,
+    "source": "KLPGA",
+    "collectedAt": "2025-04-25T07:50:50.019557Z"
+  },
+  {
+    "golfCourseName": "블루헤런",
+    "currentPrice": 23524,
+    "delta": -417,
+    "source": "DONGA",
+    "collectedAt": "2025-04-27T07:50:50.019566Z"
+  },
+  {
+    "golfCourseName": "블루헤런",
+    "currentPrice": 31731,
+    "delta": 148,
+    "source": "ACE",
+    "collectedAt": "2025-04-25T07:50:50.019570Z"
+  },
+  {
+    "golfCourseName": "레이크우드",
+    "currentPrice": 31593,
+    "delta": 210,
+    "source": "KGA",
+    "collectedAt": "2025-04-26T07:50:50.019576Z"
+  },
+  {
+    "golfCourseName": "레이크우드",
+    "currentPrice": 29038,
+    "delta": 233,
+    "source": "ACE",
+    "collectedAt": "2025-04-23T07:50:50.019580Z"
+  },
+  {
+    "golfCourseName": "레이크우드",
+    "currentPrice": 43899,
+    "delta": -419,
+    "source": "KLPGA",
+    "collectedAt": "2025-04-26T07:50:50.019583Z"
+  },
+  {
+    "golfCourseName": "베어크리크",
+    "currentPrice": 40842,
+    "delta": 181,
+    "source": "ACE",
+    "collectedAt": "2025-04-25T07:50:50.019589Z"
+  },
+  {
+    "golfCourseName": "베어크리크",
+    "currentPrice": 36132,
+    "delta": 414,
+    "source": "KLPGA",
+    "collectedAt": "2025-04-24T07:50:50.019592Z"
+  },
+  {
+    "golfCourseName": "베어크리크",
+    "currentPrice": 23532,
+    "delta": 421,
+    "source": "DONGA",
+    "collectedAt": "2025-04-28T07:50:50.019596Z"
+  },
+  {
+    "golfCourseName": "남촌",
+    "currentPrice": 31399,
+    "delta": -481,
+    "source": "KGA",
+    "collectedAt": "2025-04-28T07:50:50.019602Z"
+  },
+  {
+    "golfCourseName": "남촌",
+    "currentPrice": 24940,
+    "delta": 207,
+    "source": "ACE",
+    "collectedAt": "2025-04-26T07:50:50.019606Z"
+  },
+  {
+    "golfCourseName": "남촌",
+    "currentPrice": 26252,
+    "delta": 202,
+    "source": "KLPGA",
+    "collectedAt": "2025-04-28T07:50:50.019609Z"
+  },
+  {
+    "golfCourseName": "서울",
+    "currentPrice": 25522,
+    "delta": 490,
+    "source": "KGA",
+    "collectedAt": "2025-04-26T07:50:50.019615Z"
+  },
+  {
+    "golfCourseName": "서울",
+    "currentPrice": 30684,
+    "delta": -15,
+    "source": "ACE",
+    "collectedAt": "2025-04-28T07:50:50.019618Z"
+  },
+  {
+    "golfCourseName": "아시아나",
+    "currentPrice": 34455,
+    "delta": 487,
+    "source": "ACE",
+    "collectedAt": "2025-04-27T07:50:50.019623Z"
+  },
+  {
+    "golfCourseName": "아시아나",
+    "currentPrice": 45070,
+    "delta": 102,
+    "source": "KGA",
+    "collectedAt": "2025-04-28T07:50:50.019626Z"
+  },
+  {
+    "golfCourseName": "안양",
+    "currentPrice": 41690,
+    "delta": -470,
+    "source": "DONGA",
+    "collectedAt": "2025-04-25T07:50:50.019632Z"
+  },
+  {
+    "golfCourseName": "안양",
+    "currentPrice": 26201,
+    "delta": 484,
+    "source": "ACE",
+    "collectedAt": "2025-04-25T07:50:50.019635Z"
+  },
+  {
+    "golfCourseName": "안양",
+    "currentPrice": 33531,
+    "delta": -259,
+    "source": "KLPGA",
+    "collectedAt": "2025-04-27T07:50:50.019638Z"
+  },
+  {
+    "golfCourseName": "남서울",
+    "currentPrice": 40391,
+    "delta": 400,
+    "source": "ACE",
+    "collectedAt": "2025-04-28T07:50:50.019643Z"
+  },
+  {
+    "golfCourseName": "남서울",
+    "currentPrice": 37657,
+    "delta": -65,
+    "source": "KGA",
+    "collectedAt": "2025-04-24T07:50:50.019647Z"
+  },
+  {
+    "golfCourseName": "일동레이크",
+    "currentPrice": 28709,
+    "delta": 228,
+    "source": "DONGA",
+    "collectedAt": "2025-04-28T07:50:50.019652Z"
+  },
+  {
+    "golfCourseName": "일동레이크",
+    "currentPrice": 42110,
+    "delta": 241,
+    "source": "ACE",
+    "collectedAt": "2025-04-26T07:50:50.019655Z"
+  },
+  {
+    "golfCourseName": "이스트밸리",
+    "currentPrice": 25101,
+    "delta": 357,
+    "source": "KGA",
+    "collectedAt": "2025-04-23T07:50:50.019661Z"
+  },
+  {
+    "golfCourseName": "이스트밸리",
+    "currentPrice": 49507,
+    "delta": -288,
+    "source": "ACE",
+    "collectedAt": "2025-04-25T07:50:50.019664Z"
+  },
+  {
+    "golfCourseName": "이스트밸리",
+    "currentPrice": 41933,
+    "delta": -436,
+    "source": "DONGA",
+    "collectedAt": "2025-04-23T07:50:50.019667Z"
+  }
+]

@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 44 Labs Frontend Developer Assignment
 
-## Getting Started
+이 저장소는 44 Labs 프론트엔드 개발자 과제 제출용 레포입니다.
 
-First, run the development server:
+## 🎯 과제 목표
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+골프장 회원권 시세 데이터를 기반으로, 거래소별 시세를 정리하고 비교할 수 있는 테이블 UI를 구현합니다.  
+**단순 리스트를 넘어서, 비교/정렬/필터링 등의 인터랙션 구현 능력**을 중점적으로 평가합니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 과제 범위 (필수 구현 사항)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 거래소별 최신 시세 데이터를 테이블 형태로 표시
+- 골프장명 기준 검색 필터
+- 현재 시세 및 골프장명 기준 정렬 기능
+- 동일 골프장명에 대해 거래소 간 가격 비교 및 표시
+- 시세 변동에 따른 색상 처리
+    - 상승: 빨간색
+    - 하락: 파란색
+    - 유지: 회색 또는 기본색
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔥 추가 구현 (선택 사항, 플러스 포인트)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+아래 기능을 추가로 구현하면 플러스 포인트를 부여합니다:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 출처(source)별 필터 기능
+- 가격 차이가 ±5% 이상인 경우 경고 표시
+- 수집 시간이 오래된 데이터 흐리게 표시
+- 반응형 UI 구현
+- 데이터 Fetch를 Mock API 서버로 구성
+- Next.js Server Components 또는 Suspense 적용
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📁 데이터
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `public/sample-data.json` 파일이 제공됩니다.
+- 필요에 따라 데이터를 변형하거나, Mock API로 확장하여 사용해도 됩니다.
+
+---
+
+## 🛠 기술 스택
+
+- Next.js 14 (App Router)
+- TypeScript 필수
+- 스타일링 자유 (CSS Module, Tailwind CSS, Styled-Components 등 선택 가능)
+
+---
+
+## 🧪 평가 기준
+
+| 항목              | 비중  |
+|:----------------|:----|
+| API/데이터 처리      | 30% |
+| 비교/정렬/필터 로직 설계  | 20% |
+| UI 구성 및 UX 전달력  | 20% |
+| 코드 구성 및 컴포넌트 분리 | 20% |
+| 커밋 메시지 및 문서화    | 10% |
+
+---
+
+## 🚀 제출 방법
+
+1. 레포를 풀링 하고 Branch를 생성합니다.
+2. 작업 완료 후 PR(Pull Request)을 오픈합니다.
+3. PR 본문에 다음 내용을 포함해주세요:
+    - 구현 완료한 범위
+    - 추가적으로 고민하거나 개선한 점
+    - 향후 확장 아이디어 (선택)
+
+---
+
+## ⏳ 과제 진행 일정
+
+- 과제 시작일로부터 **7일 이내** 제출
+- 권장 진행 흐름:
+    - 1~3일: 기능 구현 완료
+    - 4~7일: 코드 리팩터링, UI 개선, 추가 기능 적용 (선택)
+
+---
+
+## 🧩 기타 안내
+
+- 모든 코드는 **TypeScript**로 작성해주세요.
+- 컴포넌트 분리와 파일 구조에 신경 써주세요.
+- 코드 스타일 일관성을 위해 Prettier 포맷팅을 추천합니다.
+- 과제와 관련된 질문은 언제든지 문의 가능합니다.
+
