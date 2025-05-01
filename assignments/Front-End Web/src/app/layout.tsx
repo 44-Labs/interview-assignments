@@ -4,8 +4,8 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Golf Course Price',
-  description: 'Golf Course Price',
+  title: '골프장 가격 비교',
+  description: '실시간 회원권 시세를 확인하세요!',
 };
 
 export default function RootLayout({

@@ -1,17 +1,16 @@
 'use client';
 
-import { useGolfPriceSort } from '@/hooks/useGolfPriceSort';
 import { Table, TableRow, TableCell, TableHeaderCell } from '@/components/common/Table';
-import { GolfClubPrice } from '@/types';
+import { GolfClubPrice, SortField } from '@/types';
 import { formatDate } from '@/lib/util';
 
-interface GolfPriceTableProps {
-  initialData: GolfClubPrice[];
-}
-
-export default function GolfPriceTable({ initialData }: GolfPriceTableProps) {
-  const { sortedData, toggleSort } = useGolfPriceSort(initialData);
-
+export default function GolfPriceTable({
+  sortedData,
+  toggleSort,
+}: {
+  sortedData: GolfClubPrice[];
+  toggleSort: (field: SortField) => void;
+}) {
   return (
     <Table>
       <thead>

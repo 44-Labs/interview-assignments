@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { mockGolfPrices } from '@/__MOCK__';
-import GolfPriceTable from '@/components/GolfPriceTable';
+import { GolfPriceView } from '@/components/GolfPriceView';
 import GolfPriceTableSkeleton from '@/components/ui/GolfPriceTableSkeleton';
 
 export default function Home() {
@@ -16,5 +16,5 @@ export default function Home() {
 async function GolfPriceTableServer() {
   await new Promise(resolve => setTimeout(resolve, 3000));
 
-  return <GolfPriceTable initialData={mockGolfPrices} />;
+  return <GolfPriceView initialData={mockGolfPrices} />;
 }

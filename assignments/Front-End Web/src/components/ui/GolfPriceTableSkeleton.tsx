@@ -30,7 +30,9 @@ export default function GolfPriceTableSkeleton() {
             <TableRow key={rowIndex}>
               {Object.values(columnWidths).map((width, cellIndex) => (
                 <TableCell key={cellIndex}>
-                  <SkeletonCell width={width} />
+                  <div className="flex justify-center">
+                    <SkeletonCell width={width} />
+                  </div>
                 </TableCell>
               ))}
             </TableRow>
