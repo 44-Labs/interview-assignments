@@ -22,3 +22,11 @@ export const formatDate = (date: string) => {
     minute: '2-digit',
   });
 };
+
+export function isOldData(collectedAt: string, days = 3) {
+  const now = new Date();
+  const collected = new Date(collectedAt);
+  const diffMs = now.getTime() - collected.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays >= days;
+}

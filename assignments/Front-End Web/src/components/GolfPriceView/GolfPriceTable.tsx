@@ -3,6 +3,7 @@
 import { Table, TableRow, TableCell, TableHeaderCell } from '@/components/common/Table';
 import { GolfClubPrice, SortField, SortOrder } from '@/types';
 import { formatDate } from '@/lib/util';
+import { isOldData } from '@/lib/util';
 
 export default function GolfPriceTable({
   sortedData,
@@ -43,18 +44,21 @@ export default function GolfPriceTable({
         </TableRow>
       </thead>
       <tbody>
-        {sortedData.map(item => (
-          <TableRow key={item.id}>
-            <TableCell>{item.golfCourseName}</TableCell>
-            <TableCell>{item.currentPrice.toLocaleString()}원</TableCell>
-            <TableCell className={item.delta > 0 ? 'text-red-500' : item.delta < 0 ? 'text-blue-500' : ''}>
-              {item.delta > 0 ? '+' : ''}
-              {item.delta.toLocaleString()}원
-            </TableCell>
-            <TableCell>{item.source}</TableCell>
-            <TableCell>{formatDate(item.collectedAt)}</TableCell>
-          </TableRow>
-        ))}
+        {sortedData.map(item => {
+          const isOld = isOldData(item.collectedAt);
+          return (
+            <TableRow key={item.id} className={isOld ? 'opacity-50' : ''}>
+              <TableCell>{item.golfCourseName}</TableCell>
+              <TableCell>{item.currentPrice.toLocaleString()}원</TableCell>
+              <TableCell className={item.delta > 0 ? 'text-red-500' : item.delta < 0 ? 'text-blue-500' : ''}>
+                {item.delta > 0 ? '+' : ''}
+                {item.delta.toLocaleString()}원
+              </TableCell>
+              <TableCell>{item.source}</TableCell>
+              <TableCell>{formatDate(item.collectedAt)}</TableCell>
+            </TableRow>
+          );
+        })}
       </tbody>
     </Table>
   );
