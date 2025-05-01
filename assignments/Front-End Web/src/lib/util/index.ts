@@ -1,3 +1,5 @@
+import { GolfClubPrice } from '@/types';
+
 export const formatDate = (date: string) => {
   const d = new Date(date);
   const today = new Date();
@@ -29,4 +31,25 @@ export function isOldData(collectedAt: string, days = 3) {
   const diffMs = now.getTime() - collected.getTime();
   const diffDays = diffMs / (1000 * 60 * 60 * 24);
   return diffDays >= days;
+}
+
+export function getPriceWarningInfo(data: GolfClubPrice[]) {
+  const group: Record<string, GolfClubPrice[]> = {};
+  data.forEach(item => {
+    if (!group[item.golfCourseName]) group[item.golfCourseName] = [];
+    group[item.golfCourseName].push(item);
+  });
+
+  return data.map(item => {
+    const groupItems = group[item.golfCourseName];
+    const avg = groupItems.reduce((sum, i) => sum + i.currentPrice, 0) / groupItems.length;
+    const diffPercent = ((item.currentPrice - avg) / avg) * 100;
+    const isWarning = Math.abs(diffPercent) >= 30;
+    return {
+      ...item,
+      avgPrice: avg,
+      diffPercent,
+      isWarning,
+    };
+  });
 }
