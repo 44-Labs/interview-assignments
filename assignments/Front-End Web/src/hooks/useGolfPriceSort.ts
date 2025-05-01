@@ -5,7 +5,6 @@ export function useGolfPriceSort(initialData: GolfClubPrice[]) {
   const [sortField, setSortField] = useState<SortField | null>(null);
   const [sortOrder, setSortOrder] = useState<SortOrder | null>(null);
 
-  //useMemo를 사용하여 메모이제이션
   const sortedData = useMemo(() => {
     if (!sortField || !sortOrder) return initialData;
     return [...initialData].sort((a, b) => {
