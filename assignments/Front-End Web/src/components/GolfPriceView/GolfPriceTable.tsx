@@ -12,8 +12,8 @@ export default function GolfPriceTable({
 }: {
   sortedData: GolfClubPrice[];
   toggleSort: (field: SortField) => void;
-  sortField: SortField;
-  sortOrder: SortOrder;
+  sortField: SortField | null;
+  sortOrder: SortOrder | null;
 }) {
   return (
     <Table>

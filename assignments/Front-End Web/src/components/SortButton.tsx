@@ -3,7 +3,7 @@ import { Button } from './common/Button';
 
 interface SortButtonProps {
   active: boolean;
-  sortOrder?: SortOrder;
+  sortOrder?: SortOrder | null;
   onClick: () => void;
 }
 

@@ -10,8 +10,8 @@ interface TableBaseProps {
 interface TableHeaderCellProps extends TableBaseProps {
   sortable?: boolean;
   onClick?: () => void;
-  sortField?: SortField;
-  sortOrder?: SortOrder;
+  sortField?: SortField | null;
+  sortOrder?: SortOrder | null;
   fieldName?: string;
 }
 
