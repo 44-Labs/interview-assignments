@@ -1,3 +1,6 @@
+export type SortField = 'golfCourseName' | 'currentPrice' | 'delta' | 'collectedAt';
+export type SortOrder = 'asc' | 'desc';
+
 export interface GolfClubPrice {
   id: string;
   golfCourseName: string;
@@ -5,9 +8,4 @@ export interface GolfClubPrice {
   delta: number;
   source: string;
   collectedAt: string;
-}
-
-export interface ApiResponse {
-  data: GolfClubPrice[];
-  timestamp: string;
 }

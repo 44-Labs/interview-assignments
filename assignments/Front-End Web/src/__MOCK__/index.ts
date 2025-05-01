@@ -20,15 +20,15 @@ function generateRandomPrice(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generateRandomDate(hours: number) {
+function generateRandomDate(days: number) {
   const now = new Date();
-  const randomTime = new Date(now.getTime() - Math.random() * hours * 60 * 60 * 1000);
+  const randomTime = new Date(now.getTime() - Math.random() * days * 24 * 60 * 60 * 1000);
   return randomTime.toISOString();
 }
 
 const mockData: GolfClubPrice[] = Array.from({ length: 50 }, (_, index) => {
-  const basePrice = generateRandomPrice(100000000, 300000000);
-  const delta = generateRandomPrice(-10000000, 10000000);
+  const basePrice = generateRandomPrice(20000, 50000);
+  const delta = generateRandomPrice(-5000, 5000);
   const golfCourseName = golfCourses[Math.floor(Math.random() * golfCourses.length)];
   const source = sources[Math.floor(Math.random() * sources.length)];
 
@@ -38,20 +38,20 @@ const mockData: GolfClubPrice[] = Array.from({ length: 50 }, (_, index) => {
     currentPrice: basePrice,
     delta,
     source,
-    collectedAt: generateRandomDate(7),
+    collectedAt: generateRandomDate(5),
   };
 });
 
 golfCourses.forEach((course, index) => {
   sources.forEach((source, sourceIndex) => {
-    const basePrice = generateRandomPrice(100000000, 300000000);
+    const basePrice = generateRandomPrice(20000, 50000);
     mockData[index * sources.length + sourceIndex] = {
       id: (index * sources.length + sourceIndex + 1).toString(),
       golfCourseName: course,
       currentPrice: basePrice,
-      delta: generateRandomPrice(-10000000, 10000000),
+      delta: generateRandomPrice(-5000, 5000),
       source,
-      collectedAt: generateRandomDate(24),
+      collectedAt: generateRandomDate(5),
     };
   });
 });

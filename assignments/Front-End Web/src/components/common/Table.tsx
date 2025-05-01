@@ -1,6 +1,12 @@
 interface TableBaseProps {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
+}
+
+interface TableHeaderCellProps extends TableBaseProps {
+  sortable?: boolean;
+  onClick?: () => void;
 }
 
 export function Table({ children, className = '' }: TableBaseProps) {
@@ -19,6 +25,17 @@ export function TableCell({ children, className = '' }: TableBaseProps) {
   return <td className={`px-4 py-3 text-center ${className}`}>{children}</td>;
 }
 
-export function TableHeaderCell({ children, className = '' }: TableBaseProps) {
-  return <th className={`px-4 py-2 text-center ${className}`}>{children}</th>;
+export function TableHeaderCell({ children, className = '', sortable, onClick }: TableHeaderCellProps) {
+  return (
+    <th
+      className={`
+          px-4 py-2 text-center 
+          ${sortable ? 'cursor-pointer hover:bg-gray-200 group' : ''} 
+          ${className}
+        `}
+      onClick={onClick}
+    >
+      <div className="flex items-center justify-center gap-1">{children}</div>
+    </th>
+  );
 }
