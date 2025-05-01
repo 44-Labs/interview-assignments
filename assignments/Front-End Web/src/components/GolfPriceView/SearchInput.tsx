@@ -24,7 +24,7 @@ export function SearchInput({ onSearch, placeholder, className }: SearchInputPro
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder={placeholder || '검색하세요!'}
+        placeholder={placeholder || '검색어를 입력해주세요.'}
         className="w-full max-w-xs px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
       />
       <button

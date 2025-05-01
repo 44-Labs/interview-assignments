@@ -1,4 +1,4 @@
-export type SortField = 'golfCourseName' | 'currentPrice' | 'delta' | 'collectedAt';
+export type SortField = 'golfCourseName' | 'currentPrice';
 export type SortOrder = 'asc' | 'desc';
 
 export interface GolfClubPrice {

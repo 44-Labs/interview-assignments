@@ -2,10 +2,12 @@ import { useState, useMemo } from 'react';
 import { GolfClubPrice, SortField, SortOrder } from '@/types';
 
 export function useGolfPriceSort(initialData: GolfClubPrice[]) {
-  const [sortField, setSortField] = useState<SortField>('golfCourseName');
-  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+  const [sortField, setSortField] = useState<SortField | null>(null);
+  const [sortOrder, setSortOrder] = useState<SortOrder | null>(null);
 
+  //useMemo를 사용하여 메모이제이션
   const sortedData = useMemo(() => {
+    if (!sortField || !sortOrder) return initialData;
     return [...initialData].sort((a, b) => {
       if (sortField === 'golfCourseName') {
         return sortOrder === 'asc'
@@ -13,14 +15,8 @@ export function useGolfPriceSort(initialData: GolfClubPrice[]) {
           : b.golfCourseName.localeCompare(a.golfCourseName);
       }
 
-      if (sortField === 'currentPrice' || sortField === 'delta') {
-        return sortOrder === 'asc' ? a[sortField] - b[sortField] : b[sortField] - a[sortField];
-      }
-
-      if (sortField === 'collectedAt') {
-        return sortOrder === 'asc'
-          ? new Date(a.collectedAt).getTime() - new Date(b.collectedAt).getTime()
-          : new Date(b.collectedAt).getTime() - new Date(a.collectedAt).getTime();
+      if (sortField === 'currentPrice') {
+        return sortOrder === 'asc' ? a.currentPrice - b.currentPrice : b.currentPrice - a.currentPrice;
       }
 
       return 0;
@@ -32,7 +28,7 @@ export function useGolfPriceSort(initialData: GolfClubPrice[]) {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
       setSortField(field);
-      setSortOrder('asc');
+      setSortOrder('desc');
     }
   };
 

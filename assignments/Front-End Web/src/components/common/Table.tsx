@@ -1,3 +1,6 @@
+import { SortField, SortOrder } from '@/types';
+import { SortButton } from '../SortButton';
+
 interface TableBaseProps {
   children: React.ReactNode;
   className?: string;
@@ -7,6 +10,9 @@ interface TableBaseProps {
 interface TableHeaderCellProps extends TableBaseProps {
   sortable?: boolean;
   onClick?: () => void;
+  sortField?: SortField;
+  sortOrder?: SortOrder;
+  fieldName?: string;
 }
 
 export function Table({ children, className = '' }: TableBaseProps) {
@@ -25,7 +31,17 @@ export function TableCell({ children, className = '' }: TableBaseProps) {
   return <td className={`px-4 py-3 text-center ${className}`}>{children}</td>;
 }
 
-export function TableHeaderCell({ children, className = '', sortable, onClick }: TableHeaderCellProps) {
+export function TableHeaderCell({
+  children,
+  className = '',
+  sortable,
+  sortField,
+  sortOrder,
+  fieldName,
+  onClick,
+}: TableHeaderCellProps) {
+  const isActive = fieldName === sortField;
+
   return (
     <th
       className={`
@@ -35,7 +51,10 @@ export function TableHeaderCell({ children, className = '', sortable, onClick }:
         `}
       onClick={onClick}
     >
-      <div className="flex items-center justify-center gap-1">{children}</div>
+      <div className="flex items-center justify-center gap-1">
+        {children}
+        {sortable && onClick && <SortButton active={isActive} sortOrder={sortOrder} onClick={onClick} />}
+      </div>
     </th>
   );
 }

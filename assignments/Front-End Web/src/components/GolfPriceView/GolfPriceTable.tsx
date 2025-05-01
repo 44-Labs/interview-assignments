@@ -1,33 +1,45 @@
 'use client';
 
 import { Table, TableRow, TableCell, TableHeaderCell } from '@/components/common/Table';
-import { GolfClubPrice, SortField } from '@/types';
+import { GolfClubPrice, SortField, SortOrder } from '@/types';
 import { formatDate } from '@/lib/util';
 
 export default function GolfPriceTable({
   sortedData,
   toggleSort,
+  sortField,
+  sortOrder,
 }: {
   sortedData: GolfClubPrice[];
   toggleSort: (field: SortField) => void;
+  sortField: SortField;
+  sortOrder: SortOrder;
 }) {
   return (
     <Table>
       <thead>
         <TableRow className="bg-gray-100">
-          <TableHeaderCell sortable onClick={() => toggleSort('golfCourseName')}>
+          <TableHeaderCell
+            sortable
+            sortField={sortField}
+            sortOrder={sortOrder}
+            onClick={() => toggleSort('golfCourseName')}
+            fieldName="golfCourseName"
+          >
             골프장명
           </TableHeaderCell>
-          <TableHeaderCell sortable onClick={() => toggleSort('currentPrice')}>
+          <TableHeaderCell
+            sortable
+            sortField={sortField}
+            sortOrder={sortOrder}
+            onClick={() => toggleSort('currentPrice')}
+            fieldName="currentPrice"
+          >
             현재가
           </TableHeaderCell>
-          <TableHeaderCell sortable onClick={() => toggleSort('delta')}>
-            등락
-          </TableHeaderCell>
+          <TableHeaderCell>등락</TableHeaderCell>
           <TableHeaderCell>거래소</TableHeaderCell>
-          <TableHeaderCell sortable onClick={() => toggleSort('collectedAt')}>
-            수집시각
-          </TableHeaderCell>
+          <TableHeaderCell>수집시각</TableHeaderCell>
         </TableRow>
       </thead>
       <tbody>
