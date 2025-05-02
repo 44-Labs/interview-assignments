@@ -8,7 +8,6 @@ export async function GET() {
     await delay(Math.random() * 1000 + 500);
     return NextResponse.json({ data: mockGolfPrices });
   } catch (error) {
-    console.error('Error fetching golf prices:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 });
   }
 }

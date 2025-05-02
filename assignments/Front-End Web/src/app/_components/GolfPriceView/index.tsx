@@ -5,14 +5,10 @@ import { SearchInput } from './SearchInput';
 import { useGolfSearch } from '@/hooks/useGolfSearch';
 import { useGolfPriceSort } from '@/hooks/useGolfPriceSort';
 import { useSourceFilter } from '@/hooks/useSourceFilter';
-import { SourceFilter } from '../SourceFilter';
+import { SourceFilter } from '../../../components/SourceFilter';
 import GolfPriceTable from './GolfPriceTable';
 
-interface GolfPriceViewProps {
-  initialData: GolfClubPrice[];
-}
-
-export function GolfPriceView({ initialData }: GolfPriceViewProps) {
+export function GolfPriceView({ initialData }: { initialData: GolfClubPrice[] }) {
   //1. 출처별 필터링
   const {
     sources,

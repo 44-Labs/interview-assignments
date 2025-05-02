@@ -1,18 +1,20 @@
-import { APIResponse, GolfClubPrice } from '@/types';
+import { GolfClubPrice } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function getGolfPrices(): Promise<APIResponse<GolfClubPrice>> {
+export async function getGolfPrices(): Promise<GolfClubPrice[]> {
   try {
+    // ISR 30초
     const response = await fetch(`${API_URL}/api/golf-prices`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 30 },
     });
 
     if (!response.ok) {
       throw new Error('Failed to fetch golf prices');
     }
 
-    return response.json();
+    const data = await response.json();
+    return data.data;
   } catch (error) {
     throw error;
   }
