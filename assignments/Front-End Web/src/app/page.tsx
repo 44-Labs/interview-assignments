@@ -1,20 +1,21 @@
 import { Suspense } from 'react';
-import { mockGolfPrices } from '@/__MOCK__';
 import { GolfPriceView } from '@/components/GolfPriceView';
 import GolfPriceTableSkeleton from '@/components/ui/GolfPriceTableSkeleton';
+import { getGolfPrices } from '@/lib/api';
+import { GolfClubPrice } from '@/types';
 
-export default function Home() {
+export default async function Home() {
+  const initialData = await getGolfPrices();
+
   return (
     <main className="container mx-auto p-4">
       <Suspense fallback={<GolfPriceTableSkeleton />}>
-        <GolfPriceTableServer />
+        <GolfPriceTableServer initialData={initialData.data} />
       </Suspense>
     </main>
   );
 }
 
-async function GolfPriceTableServer() {
-  await new Promise(resolve => setTimeout(resolve, 3000));
-
-  return <GolfPriceView initialData={mockGolfPrices} />;
+async function GolfPriceTableServer({ initialData }: { initialData: GolfClubPrice[] }) {
+  return <GolfPriceView initialData={initialData} />;
 }

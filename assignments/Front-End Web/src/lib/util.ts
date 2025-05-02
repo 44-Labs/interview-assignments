@@ -44,7 +44,7 @@ export function getPriceWarningInfo(data: GolfClubPrice[]) {
     const groupItems = group[item.golfCourseName];
     const avg = groupItems.reduce((sum, i) => sum + i.currentPrice, 0) / groupItems.length;
     const diffPercent = ((item.currentPrice - avg) / avg) * 100;
-    const isWarning = Math.abs(diffPercent) >= 30;
+    const isWarning = Math.abs(diffPercent) >= 5;
     return {
       ...item,
       avgPrice: avg,

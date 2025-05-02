@@ -26,16 +26,33 @@ function generateRandomDate(days: number) {
   return randomTime.toISOString();
 }
 
+function generatePriceWithinRange(basePrice: number) {
+  // 5% 이상 차이가 나는 경우는 10%의 확률로만 발생
+  const shouldGenerateLargeDelta = Math.random() < 0.1;
+
+  if (shouldGenerateLargeDelta) {
+    // 5~10% 차이나는 가격 생성
+    const deltaPercent = (Math.random() * 5 + 5) * (Math.random() < 0.5 ? 1 : -1);
+    const delta = Math.floor(basePrice * (deltaPercent / 100));
+    return { currentPrice: basePrice + delta, delta };
+  } else {
+    // 5% 미만의 차이나는 가격 생성
+    const deltaPercent = Math.random() * 4.9 * (Math.random() < 0.5 ? 1 : -1);
+    const delta = Math.floor(basePrice * (deltaPercent / 100));
+    return { currentPrice: basePrice + delta, delta };
+  }
+}
+
 const mockData: GolfClubPrice[] = Array.from({ length: 50 }, (_, index) => {
   const basePrice = generateRandomPrice(20000, 50000);
-  const delta = generateRandomPrice(-5000, 5000);
+  const { currentPrice, delta } = generatePriceWithinRange(basePrice);
   const golfCourseName = golfCourses[Math.floor(Math.random() * golfCourses.length)];
   const source = sources[Math.floor(Math.random() * sources.length)];
 
   return {
     id: (index + 1).toString(),
     golfCourseName,
-    currentPrice: basePrice,
+    currentPrice,
     delta,
     source,
     collectedAt: generateRandomDate(5),
@@ -43,13 +60,14 @@ const mockData: GolfClubPrice[] = Array.from({ length: 50 }, (_, index) => {
 });
 
 golfCourses.forEach((course, index) => {
+  const basePrice = generateRandomPrice(20000, 50000);
   sources.forEach((source, sourceIndex) => {
-    const basePrice = generateRandomPrice(20000, 50000);
+    const { currentPrice, delta } = generatePriceWithinRange(basePrice);
     mockData[index * sources.length + sourceIndex] = {
       id: (index * sources.length + sourceIndex + 1).toString(),
       golfCourseName: course,
-      currentPrice: basePrice,
-      delta: generateRandomPrice(-5000, 5000),
+      currentPrice,
+      delta,
       source,
       collectedAt: generateRandomDate(5),
     };
