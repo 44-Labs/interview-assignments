@@ -23,8 +23,12 @@ export function Table({ children, className = '' }: TableBaseProps) {
   );
 }
 
-export function TableRow({ children, className = '' }: TableBaseProps) {
-  return <tr className={`border-b border-gray-200 hover:bg-gray-50 ${className}`}>{children}</tr>;
+export function TableRow({ children, className = '', onClick }: TableBaseProps) {
+  return (
+    <tr className={`border-b border-gray-200 hover:bg-gray-50 ${className}`} onClick={onClick}>
+      {children}
+    </tr>
+  );
 }
 
 export function TableCell({ children, className = '' }: TableBaseProps) {

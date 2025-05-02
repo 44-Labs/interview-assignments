@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { GolfPriceView } from '@/app/_components/GolfPriceView';
-import GolfPriceTableSkeleton from '@/components/ui/HomePageSkeleton.tsx/GolfPriceTableSkeleton';
 import { getGolfPrices } from '@/services/api';
 import { GolfClubPrice } from '@/types';
+import GolfPriceTableSkeleton from '@/app/_components/ui/HomePageSkeleton.tsx/GolfPriceTableSkeleton';
 
 export default async function Home() {
   const initialData = await getGolfPrices();

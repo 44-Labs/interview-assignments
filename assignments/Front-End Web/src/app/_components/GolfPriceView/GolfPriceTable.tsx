@@ -1,22 +1,30 @@
 'use client';
 
 import { Table, TableRow, TableCell, TableHeaderCell } from '@/components/common/Table';
-import { GolfClubPrice, SortField, SortOrder } from '@/types';
-import { formatDate, getPriceWarningInfo } from '@/lib/util';
+import { GolfClubPriceWithWarning, SortField, SortOrder } from '@/types';
+import { formatDate } from '@/lib/util';
 import { isOldData } from '@/lib/util';
+import { useModalStore } from '@/store/useModalStore';
 
 export default function GolfPriceTable({
-  sortedData,
+  data,
   toggleSort,
   sortField,
   sortOrder,
 }: {
-  sortedData: GolfClubPrice[];
+  data: GolfClubPriceWithWarning[];
   toggleSort: (field: SortField) => void;
   sortField: SortField | null;
   sortOrder: SortOrder | null;
 }) {
-  const dataWithWarning = getPriceWarningInfo(sortedData);
+  const { openModal } = useModalStore();
+
+  const handleRowClick = async (golfCourseName: string) => {
+    const res = await fetch(`/api/golf-prices/${golfCourseName}`);
+    const { data: prices } = await res.json();
+    openModal(prices);
+  };
+
   return (
     <Table>
       <thead>
@@ -45,10 +53,14 @@ export default function GolfPriceTable({
         </TableRow>
       </thead>
       <tbody>
-        {dataWithWarning.map(item => {
+        {data.map(item => {
           const isOld = isOldData(item.collectedAt);
           return (
-            <TableRow key={item.id} className={isOld ? 'opacity-50' : ''}>
+            <TableRow
+              key={item.id}
+              className={` cursor-pointer ${isOld ? 'opacity-50' : ''}`}
+              onClick={() => handleRowClick(item.golfCourseName)}
+            >
               <TableCell>{item.golfCourseName}</TableCell>
               <TableCell>
                 {item.currentPrice.toLocaleString()}원

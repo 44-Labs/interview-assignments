@@ -1,4 +1,4 @@
-import { Button } from './common/Button';
+import { Button } from '../../components/common/Button';
 
 interface SourceFilterProps {
   sources: string[];
@@ -18,7 +18,6 @@ export function SourceFilter({
   return (
     <div className="max-w-2xl mx-auto p-2 bg-white rounded-lg shadow-sm">
       <div className="flex items-center justify-center gap-2 mb-2">
-        <span className="text-m font-medium text-gray-600">거래소</span>
         <div className="flex flex-wrap justify-center gap-2">
           {sources.map(source => (
             <label

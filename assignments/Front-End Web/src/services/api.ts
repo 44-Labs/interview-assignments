@@ -19,3 +19,13 @@ export async function getGolfPrices(): Promise<GolfClubPrice[]> {
     throw error;
   }
 }
+
+export async function getGolfPriceByCourseName(courseName: string): Promise<GolfClubPrice[]> {
+  try {
+    const response = await fetch(`${API_URL}/api/golf-prices/${courseName}`);
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    throw error;
+  }
+}

@@ -9,3 +9,9 @@ export interface GolfClubPrice {
   source: string;
   collectedAt: string;
 }
+
+export interface GolfClubPriceWithWarning extends GolfClubPrice {
+  isWarning: boolean;
+  avgPrice: number;
+  diffPercent: number;
+}
