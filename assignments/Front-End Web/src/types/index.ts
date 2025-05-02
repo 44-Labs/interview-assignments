@@ -1,5 +1,4 @@
-export type SortField = 'golfCourseName' | 'currentPrice';
-export type SortOrder = 'asc' | 'desc';
+export type SortOrder = 'asc' | 'desc' | undefined | null;
 
 export interface GolfClubPrice {
   id: string;

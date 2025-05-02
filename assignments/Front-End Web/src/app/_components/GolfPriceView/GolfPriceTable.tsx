@@ -1,28 +1,44 @@
 'use client';
 
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Table, TableRow, TableCell, TableHeaderCell } from '@/components/common/Table';
-import { GolfClubPriceWithWarning, SortField, SortOrder } from '@/types';
-import { formatDate } from '@/lib/util';
-import { isOldData } from '@/lib/util';
+import { GolfClubPriceWithWarning, SortOrder } from '@/types';
+import { formatDate, isOldData } from '@/lib/util';
 import { useModalStore } from '@/store/useModalStore';
 
-export default function GolfPriceTable({
-  data,
-  toggleSort,
-  sortField,
-  sortOrder,
-}: {
-  data: GolfClubPriceWithWarning[];
-  toggleSort: (field: SortField) => void;
-  sortField: SortField | null;
-  sortOrder: SortOrder | null;
-}) {
+export default function GolfPriceTable() {
+  const [data, setData] = useState<GolfClubPriceWithWarning[]>([]);
   const { openModal } = useModalStore();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const sortField = searchParams.get('sortField');
+  const sortOrder = searchParams.get('sortOrder') as SortOrder;
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    fetch(`/api/golf-prices?${params.toString()}`)
+      .then(res => res.json())
+      .then(res => {
+        setData(res.data);
+      });
+  }, [searchParams]);
 
   const handleRowClick = async (golfCourseName: string) => {
-    const res = await fetch(`/api/golf-prices/${golfCourseName}`);
+    const res = await fetch(`/api/golf-prices?golfCourseName=${golfCourseName}`);
     const { data: prices } = await res.json();
     openModal(prices);
+  };
+
+  const handleSort = (field: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (sortField === field) {
+      params.set('sortOrder', sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      params.set('sortField', field);
+      params.set('sortOrder', 'desc');
+    }
+    router.replace(`?${params.toString()}`);
   };
 
   return (
@@ -33,8 +49,8 @@ export default function GolfPriceTable({
             sortable
             sortField={sortField}
             sortOrder={sortOrder}
-            onClick={() => toggleSort('golfCourseName')}
             fieldName="golfCourseName"
+            onClick={() => handleSort('golfCourseName')}
           >
             골프장명
           </TableHeaderCell>
@@ -42,8 +58,8 @@ export default function GolfPriceTable({
             sortable
             sortField={sortField}
             sortOrder={sortOrder}
-            onClick={() => toggleSort('currentPrice')}
             fieldName="currentPrice"
+            onClick={() => handleSort('currentPrice')}
           >
             현재가
           </TableHeaderCell>
@@ -54,11 +70,10 @@ export default function GolfPriceTable({
       </thead>
       <tbody>
         {data.map(item => {
-          const isOld = isOldData(item.collectedAt);
           return (
             <TableRow
               key={item.id}
-              className={` cursor-pointer ${isOld ? 'opacity-50' : ''}`}
+              className={`cursor-pointer ${isOldData(item.collectedAt) ? 'opacity-50' : ''}`}
               onClick={() => handleRowClick(item.golfCourseName)}
             >
               <TableCell>{item.golfCourseName}</TableCell>

@@ -1,5 +1,5 @@
-import { SortField, SortOrder } from '@/types';
 import { SortButton } from '../SortButton';
+import { SortOrder } from '@/types';
 
 interface TableBaseProps {
   children: React.ReactNode;
@@ -10,8 +10,8 @@ interface TableBaseProps {
 interface TableHeaderCellProps extends TableBaseProps {
   sortable?: boolean;
   onClick?: () => void;
-  sortField?: SortField | null;
-  sortOrder?: SortOrder | null;
+  sortField?: string | null;
+  sortOrder?: SortOrder;
   fieldName?: string;
 }
 
@@ -44,7 +44,7 @@ export function TableHeaderCell({
   fieldName,
   onClick,
 }: TableHeaderCellProps) {
-  const isActive = fieldName === sortField;
+  const isActive = sortField === fieldName;
 
   return (
     <th
