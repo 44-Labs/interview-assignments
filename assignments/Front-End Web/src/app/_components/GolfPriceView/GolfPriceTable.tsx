@@ -1,17 +1,16 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
 import { Table, TableRow, TableCell, TableHeaderCell } from '@/components/common/Table';
 import { GolfClubPrice, SortOrder } from '@/types';
-import { formatDate, isOldData } from '@/lib/util';
+import { formatDate, isOldData, sortGolfPrices } from '@/lib/util';
 import { useModalStore } from '@/store/useModalStore';
+import { useState } from 'react';
 
 export default function GolfPriceTable({ initialData }: { initialData: GolfClubPrice[] }) {
-  const router = useRouter();
   const { openModal } = useModalStore();
-  const searchParams = useSearchParams();
-  const sortField = searchParams.get('sortField');
-  const sortOrder = searchParams.get('sortOrder') as SortOrder;
+  const [sortField, setSortField] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<SortOrder | null>(null);
+  const sortedData = sortGolfPrices(initialData, sortField as 'golfCourseName' | 'currentPrice', sortOrder);
 
   const handleRowClick = async (golfCourseName: string) => {
     const res = await fetch(`/api/golf-prices?golfCourseName=${golfCourseName}`);
@@ -19,15 +18,13 @@ export default function GolfPriceTable({ initialData }: { initialData: GolfClubP
     openModal(prices);
   };
 
-  const handleSort = (field: string) => {
-    const params = new URLSearchParams(searchParams.toString());
+  const handleSort = (field: 'golfCourseName' | 'currentPrice') => {
     if (sortField === field) {
-      params.set('sortOrder', sortOrder === 'asc' ? 'desc' : 'asc');
+      setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'));
     } else {
-      params.set('sortField', field);
-      params.set('sortOrder', 'desc');
+      setSortField(field);
+      setSortOrder('desc');
     }
-    router.replace(`?${params.toString()}`);
   };
 
   return (
@@ -58,7 +55,7 @@ export default function GolfPriceTable({ initialData }: { initialData: GolfClubP
         </TableRow>
       </thead>
       <tbody>
-        {initialData.map(item => {
+        {sortedData.map(item => {
           return (
             <TableRow
               key={item.id}
