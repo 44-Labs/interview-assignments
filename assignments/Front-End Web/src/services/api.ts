@@ -2,11 +2,21 @@ import { GolfClubPrice } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function getGolfPrices(): Promise<GolfClubPrice[]> {
+export async function getGolfPrices(searchParams?: Record<string, string>): Promise<GolfClubPrice[]> {
   try {
-    // ISR 30초
-    const response = await fetch(`${API_URL}/api/golf-prices`, {
-      next: { revalidate: 30 },
+    const params = new URLSearchParams();
+
+    for (const key in searchParams) {
+      const value = searchParams[key];
+      if (Array.isArray(value)) {
+        value.forEach(v => params.append(key, v));
+      } else if (value !== undefined) {
+        params.set(key, value);
+      }
+    }
+
+    const response = await fetch(`${API_URL}/api/golf-prices?${params}`, {
+      cache: 'no-store',
     });
 
     if (!response.ok) {

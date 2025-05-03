@@ -1,20 +1,21 @@
 'use client';
 
 import { GolfClubPrice } from '@/types';
-import { SearchInput } from './SearchInput';
-import { SourceFilter } from '../SourceFilter';
-import GolfPriceTable from './GolfPriceTable';
 import { GolfPriceComparisonModal } from '../GolfPriceComparisonModal';
+import GolfPriceTable from './GolfPriceTable';
+import FilterBox from '../FilterBox';
 
-export function GolfPriceView({ initialData }: { initialData: GolfClubPrice[] }) {
+interface GolfPriceViewProps {
+  initialData: GolfClubPrice[];
+  allData: GolfClubPrice[];
+}
+
+export function GolfPriceView({ initialData, allData }: GolfPriceViewProps) {
   return (
     <>
       <div className="space-y-4 ">
-        <SourceFilter initialData={initialData} />
-        <div className="flex justify-center">
-          <SearchInput className="w-full max-w-xs" placeholder="골프장을 검색해주세요." />
-        </div>
-        <GolfPriceTable />
+        <FilterBox allData={allData} />
+        <GolfPriceTable initialData={initialData} />
       </div>
       <GolfPriceComparisonModal />
     </>

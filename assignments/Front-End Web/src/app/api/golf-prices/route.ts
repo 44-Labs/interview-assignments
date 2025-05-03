@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { mockGolfPrices } from '@/__MOCK__';
-import { getPriceWarningInfo } from '@/lib/util';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -41,7 +40,6 @@ export async function GET(request: Request) {
       return 0;
     });
   }
-  const dataWithWarning = getPriceWarningInfo(data);
 
-  return NextResponse.json({ data: dataWithWarning });
+  return NextResponse.json({ data });
 }

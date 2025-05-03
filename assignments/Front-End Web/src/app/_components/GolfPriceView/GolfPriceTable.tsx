@@ -1,28 +1,17 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { Table, TableRow, TableCell, TableHeaderCell } from '@/components/common/Table';
-import { GolfClubPriceWithWarning, SortOrder } from '@/types';
+import { GolfClubPrice, SortOrder } from '@/types';
 import { formatDate, isOldData } from '@/lib/util';
 import { useModalStore } from '@/store/useModalStore';
 
-export default function GolfPriceTable() {
-  const [data, setData] = useState<GolfClubPriceWithWarning[]>([]);
+export default function GolfPriceTable({ initialData }: { initialData: GolfClubPrice[] }) {
+  const router = useRouter();
   const { openModal } = useModalStore();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const sortField = searchParams.get('sortField');
   const sortOrder = searchParams.get('sortOrder') as SortOrder;
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    fetch(`/api/golf-prices?${params.toString()}`)
-      .then(res => res.json())
-      .then(res => {
-        setData(res.data);
-      });
-  }, [searchParams]);
 
   const handleRowClick = async (golfCourseName: string) => {
     const res = await fetch(`/api/golf-prices?golfCourseName=${golfCourseName}`);
@@ -69,7 +58,7 @@ export default function GolfPriceTable() {
         </TableRow>
       </thead>
       <tbody>
-        {data.map(item => {
+        {initialData.map(item => {
           return (
             <TableRow
               key={item.id}

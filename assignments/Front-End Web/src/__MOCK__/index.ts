@@ -43,34 +43,23 @@ function generatePriceWithinRange(basePrice: number) {
   }
 }
 
-const mockData: GolfClubPrice[] = Array.from({ length: 50 }, (_, index) => {
-  const basePrice = generateRandomPrice(20000, 50000);
-  const { currentPrice, delta } = generatePriceWithinRange(basePrice);
-  const golfCourseName = golfCourses[Math.floor(Math.random() * golfCourses.length)];
-  const source = sources[Math.floor(Math.random() * sources.length)];
-
-  return {
-    id: (index + 1).toString(),
-    golfCourseName,
-    currentPrice,
-    delta,
-    source,
-    collectedAt: generateRandomDate(5),
-  };
-});
+const mockData: GolfClubPrice[] = [];
 
 golfCourses.forEach((course, index) => {
   const basePrice = generateRandomPrice(20000, 50000);
   sources.forEach((source, sourceIndex) => {
     const { currentPrice, delta } = generatePriceWithinRange(basePrice);
-    mockData[index * sources.length + sourceIndex] = {
+    mockData.push({
       id: (index * sources.length + sourceIndex + 1).toString(),
       golfCourseName: course,
       currentPrice,
       delta,
       source,
       collectedAt: generateRandomDate(5),
-    };
+      isWarning: Math.abs(delta) / basePrice > 0.05,
+      avgPrice: basePrice,
+      diffPercent: (delta / basePrice) * 100,
+    });
   });
 });
 
