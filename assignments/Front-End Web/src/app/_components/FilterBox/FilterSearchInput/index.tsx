@@ -1,7 +1,8 @@
 'use client';
 
-import { KeyboardEvent } from 'react';
-import { useRef } from 'react';
+import { KeyboardEvent, useRef } from 'react';
+import { FiSearch, FiX } from 'react-icons/fi';
+import { Button } from '@/components/common/Button';
 
 interface FilterSearchInputProps {
   value: string;
@@ -29,10 +30,7 @@ export default function FilterSearchInput({
   return (
     <div className={`relative w-full max-w-xs ${className}`}>
       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-          <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" d="M20 20l-3.5-3.5" />
-        </svg>
+        <FiSearch size={18} />
       </span>
       <input
         ref={inputRef}
@@ -44,20 +42,9 @@ export default function FilterSearchInput({
         className="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400"
       />
       {value && (
-        <button
-          type="button"
-          className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-          onClick={() => {
-            setValue('');
-            inputRef.current?.focus();
-          }}
-          aria-label="검색어 지우기"
-        >
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="#f3f4f6" />
-            <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" d="M9 9l6 6m0-6l-6 6" />
-          </svg>
-        </button>
+        <Button onClick={() => setValue('')} className="absolute right-2 top-1/2 -translate-y-1/2">
+          <FiX size={18} />
+        </Button>
       )}
     </div>
   );

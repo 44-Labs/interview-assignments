@@ -1,9 +1,9 @@
 'use client';
 
 import { GolfClubPrice } from '@/types';
-import { GolfPriceComparisonModal } from '../GolfPriceComparisonModal';
 import GolfPriceTable from './GolfPriceTable';
 import FilterBox from '../FilterBox';
+import { GolfPriceComparisonModal } from '../GolfPriceComparisonModal';
 
 interface GolfPriceViewProps {
   initialData: GolfClubPrice[];
