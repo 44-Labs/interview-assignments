@@ -14,7 +14,7 @@ export default function GolfPriceComparisonList({ data }: Props) {
             className="flex items-center justify-between p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
           >
             <span className="text-lg font-medium text-gray-700">{item.source}</span>
-            <span className="text-xl font-semibold text-blue-600">{item.currentPrice.toLocaleString()}원</span>
+            <span className="text-xl font-semibold text-gray-700">{item.currentPrice.toLocaleString()}원</span>
           </li>
         );
       })}

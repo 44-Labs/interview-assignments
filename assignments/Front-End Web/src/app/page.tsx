@@ -1,17 +1,21 @@
-import GolfPriceTableSkeleton from '@/app/_components/ui/HomePageSkeleton.tsx/GolfPriceTableSkeleton';
+import PageSkeleton from '@/app/_components/PageSkeleton';
 import { Suspense } from 'react';
 import { GolfPriceView } from '@/app/_components/GolfPriceView';
 import { getGolfPrices } from '@/services/api';
 import { GolfClubPrice } from '@/types';
 
-export default async function Home({ searchParams }: { searchParams: Record<string, string> }) {
+interface HomeProps {
+  searchParams: Record<string, string>;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
   const paramsObj = await searchParams;
   const allData = await getGolfPrices();
   const initialData = await getGolfPrices(paramsObj);
 
   return (
     <main className="container mx-auto p-4">
-      <Suspense fallback={<GolfPriceTableSkeleton />}>
+      <Suspense fallback={<PageSkeleton />}>
         <GolfPriceTableServer initialData={initialData} allData={allData} />
       </Suspense>
     </main>

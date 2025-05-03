@@ -5,6 +5,7 @@ interface TableBaseProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  colSpan?: number;
 }
 
 interface TableHeaderCellProps extends TableBaseProps {
@@ -31,8 +32,12 @@ export function TableRow({ children, className = '', onClick }: TableBaseProps) 
   );
 }
 
-export function TableCell({ children, className = '' }: TableBaseProps) {
-  return <td className={`px-4 py-3 text-center ${className}`}>{children}</td>;
+export function TableCell({ children, className = '', colSpan }: TableBaseProps) {
+  return (
+    <td colSpan={colSpan} className={`px-4 py-3 text-center ${className}`}>
+      {children}
+    </td>
+  );
 }
 
 export function TableHeaderCell({

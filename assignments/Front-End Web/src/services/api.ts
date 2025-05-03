@@ -5,7 +5,6 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export async function getGolfPrices(searchParams?: Record<string, string>): Promise<GolfClubPrice[]> {
   try {
     const params = new URLSearchParams();
-
     for (const key in searchParams) {
       const value = searchParams[key];
       if (Array.isArray(value)) {

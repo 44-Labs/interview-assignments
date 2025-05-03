@@ -13,7 +13,7 @@ interface GolfPriceViewProps {
 export function GolfPriceView({ initialData, allData }: GolfPriceViewProps) {
   return (
     <>
-      <div className="space-y-4 ">
+      <div className="space-y-4">
         <FilterBox allData={allData} />
         <GolfPriceTable initialData={initialData} />
       </div>
