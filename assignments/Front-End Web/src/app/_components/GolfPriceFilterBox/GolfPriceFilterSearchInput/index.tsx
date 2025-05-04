@@ -2,7 +2,6 @@
 
 import { KeyboardEvent, useRef } from 'react';
 import { FiSearch, FiX } from 'react-icons/fi';
-import { BaseButton } from '@/components/common/BaseButton';
 
 interface GolfPriceFilterSearchInputProps {
   value: string;
@@ -42,9 +41,9 @@ export default function GolfPriceFilterSearchInput({
         className="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400"
       />
       {value && (
-        <BaseButton onClick={() => setValue('')} className="absolute right-2 top-1/2 -translate-y-1/2">
+        <button onClick={() => setValue('')} className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">
           <FiX size={18} />
-        </BaseButton>
+        </button>
       )}
     </div>
   );

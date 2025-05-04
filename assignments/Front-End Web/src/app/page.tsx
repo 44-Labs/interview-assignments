@@ -15,7 +15,7 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <main className="container mx-auto p-4">
       <Suspense fallback={<GolfPriceViewSkeleton />}>
-        <GolfPriceView initialData={initialData} sourceData={sourceData} />;
+        <GolfPriceView initialData={initialData} sourceData={sourceData} />
       </Suspense>
     </main>
   );
