@@ -1,4 +1,4 @@
-export type SortOrder = 'asc' | 'desc' | null;
+export type SortOrder = 'asc' | 'desc' | '';
 
 export interface GolfClubPrice {
   id: string;

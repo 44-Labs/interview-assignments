@@ -7,14 +7,14 @@ import { GolfPriceComparisonModal } from '../GolfPriceComparisonModal';
 
 interface GolfPriceViewProps {
   initialData: GolfClubPrice[];
-  allData: GolfClubPrice[];
+  sourceData: string[];
 }
 
-export function GolfPriceView({ initialData, allData }: GolfPriceViewProps) {
+export function GolfPriceView({ initialData, sourceData }: GolfPriceViewProps) {
   return (
     <>
       <div className="space-y-4">
-        <FilterBox allData={allData} />
+        <FilterBox sourceData={sourceData} />
         <GolfPriceTable initialData={initialData} />
       </div>
       <GolfPriceComparisonModal />

@@ -60,7 +60,7 @@ export function TableHeaderCell({
     >
       <div className="flex items-center justify-center gap-1">
         {children}
-        {sortable && onClick && <SortButton active={isActive} sortOrder={sortOrder ?? null} onClick={onClick} />}
+        {sortable && onClick && <SortButton active={isActive} sortOrder={sortOrder ?? ''} onClick={onClick} />}
       </div>
     </th>
   );

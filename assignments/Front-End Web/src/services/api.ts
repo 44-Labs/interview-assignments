@@ -28,3 +28,9 @@ export async function getGolfPrices(searchParams?: Record<string, string>): Prom
     throw error;
   }
 }
+
+export async function getGolfSources(): Promise<string[]> {
+  const response = await fetch(`${API_URL}/api/golf-sources`);
+  const data = await response.json();
+  return data.data;
+}

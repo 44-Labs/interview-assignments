@@ -2,16 +2,14 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { GolfClubPrice } from '@/types';
 import FilterButtons from './FilterButtons';
 import FilterSourceCheckBox from './FilterSourceCheckBox';
 import FilterSearchInput from './FilterSearchInput';
 
-export default function FilterBox({ allData }: { allData: GolfClubPrice[] }) {
+export default function FilterBox({ sourceData }: { sourceData: string[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const uniqueSources = [...new Set(allData.map(item => item.source))];
   const [tempSelected, setTempSelected] = useState<string[]>(
     searchParams.get('sources')?.split(',').filter(Boolean) ?? []
   );
@@ -38,9 +36,9 @@ export default function FilterBox({ allData }: { allData: GolfClubPrice[] }) {
   };
 
   const handleResetFilter = () => {
+    const params = new URLSearchParams(searchParams.toString());
     setTempSelected([]);
     setInputValue('');
-    const params = new URLSearchParams(searchParams.toString());
     params.delete('sources');
     params.delete('golfCourseName');
     router.replace(`?${params.toString()}`);
@@ -48,11 +46,7 @@ export default function FilterBox({ allData }: { allData: GolfClubPrice[] }) {
 
   return (
     <div className="max-w-2xl mx-auto p-4 bg-white rounded-lg shadow-sm">
-      <FilterSourceCheckBox
-        uniqueSources={uniqueSources}
-        tempSelected={tempSelected}
-        setTempSelected={setTempSelected}
-      />
+      <FilterSourceCheckBox uniqueSources={sourceData} tempSelected={tempSelected} setTempSelected={setTempSelected} />
       <div className="flex items-center justify-center gap-3">
         <FilterSearchInput
           value={inputValue}
