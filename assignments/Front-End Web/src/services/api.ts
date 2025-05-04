@@ -1,8 +1,8 @@
-import { GolfClubPrice } from '@/types';
+import { GolfCoursePrice } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function getGolfPrices(searchParams?: Record<string, string>): Promise<GolfClubPrice[]> {
+export async function getGolfPrices(searchParams?: Record<string, string>): Promise<GolfCoursePrice[]> {
   try {
     const params = new URLSearchParams();
     for (const key in searchParams) {

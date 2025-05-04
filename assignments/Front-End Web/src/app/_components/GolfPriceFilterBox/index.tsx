@@ -2,11 +2,11 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
-import FilterButtons from './FilterButtons';
-import FilterSourceCheckBox from './FilterSourceCheckBox';
-import FilterSearchInput from './FilterSearchInput';
+import GolfPriceFilterApplyResetButtons from './GolfPriceFilterSourceCheckBox/GolfPriceFilterApplyResetButtons';
+import GolfPriceFilterSourceCheckBox from './GolfPriceFilterSourceCheckBox';
+import GolfPriceFilterSearchInput from './GolfPriceFilterSearchInput';
 
-export default function FilterBox({ sourceData }: { sourceData: string[] }) {
+export default function GolfPriceFilterBox({ sourceData }: { sourceData: string[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sources = useMemo(() => searchParams.get('sources')?.split(',').filter(Boolean) ?? [], [searchParams]);
@@ -45,16 +45,20 @@ export default function FilterBox({ sourceData }: { sourceData: string[] }) {
 
   return (
     <div className="max-w-2xl mx-auto p-4 bg-white rounded-lg shadow-sm">
-      <FilterSourceCheckBox uniqueSources={sourceData} tempSelected={tempSelected} setTempSelected={setTempSelected} />
+      <GolfPriceFilterSourceCheckBox
+        uniqueSources={sourceData}
+        tempSelected={tempSelected}
+        setTempSelected={setTempSelected}
+      />
       <div className="flex items-center justify-center gap-3">
-        <FilterSearchInput
+        <GolfPriceFilterSearchInput
           value={inputValue}
           setValue={setInputValue}
           onApply={handleApplyFilter}
           placeholder="골프장을 검색해주세요."
           className="h-10"
         />
-        <FilterButtons onApply={handleApplyFilter} onReset={handleResetFilter} />
+        <GolfPriceFilterApplyResetButtons onApply={handleApplyFilter} onReset={handleResetFilter} />
       </div>
     </div>
   );

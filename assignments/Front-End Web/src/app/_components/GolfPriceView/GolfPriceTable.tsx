@@ -1,12 +1,12 @@
-import { Table } from '@/components/common/Table';
-import { GolfClubPrice } from '@/types';
+import { BaseTable } from '@/components/common/BaseTable';
+import { GolfCoursePrice } from '@/types';
 import { useModalStore } from '@/store/useModalStore';
 import GolfPriceTableHeader from './GolfPriceTableHeader';
 import GolfPriceTableBody from './GolfPriceTableBody';
 import { useSortGolfData } from '@/hook/useSortGolfData';
 import { getGolfPrices } from '@/services/api';
 
-export default function GolfPriceTable({ initialData }: { initialData: GolfClubPrice[] }) {
+export default function GolfPriceTable({ initialData }: { initialData: GolfCoursePrice[] }) {
   const { openModal } = useModalStore();
   const { data, sortField, sortOrder, handleSort } = useSortGolfData(initialData);
 
@@ -16,9 +16,9 @@ export default function GolfPriceTable({ initialData }: { initialData: GolfClubP
   };
 
   return (
-    <Table>
+    <BaseTable>
       <GolfPriceTableHeader sortField={sortField} sortOrder={sortOrder} onSort={handleSort} />
       <GolfPriceTableBody data={data} onRowClick={handleRowClick} />
-    </Table>
+    </BaseTable>
   );
 }

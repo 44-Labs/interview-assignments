@@ -1,14 +1,14 @@
-import { Button } from '@/components/common/Button';
+import { BaseButton } from '@/components/common/BaseButton';
 
-interface Props {
+interface GolfPriceFilterSourceButtonProps {
   source: string;
   selected: boolean;
   onClick: () => void;
 }
 
-export default function FilterSourceButton({ source, selected, onClick }: Props) {
+export default function GolfPriceFilterSourceButton({ source, selected, onClick }: GolfPriceFilterSourceButtonProps) {
   return (
-    <Button
+    <BaseButton
       type="button"
       onClick={onClick}
       className={`px-3 py-1 rounded-full border font-medium transition
@@ -20,6 +20,6 @@ export default function FilterSourceButton({ source, selected, onClick }: Props)
       aria-pressed={selected}
     >
       {source}
-    </Button>
+    </BaseButton>
   );
 }

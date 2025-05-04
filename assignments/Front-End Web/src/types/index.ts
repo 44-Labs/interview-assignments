@@ -1,6 +1,6 @@
 export type SortOrder = 'asc' | 'desc' | '';
 
-export interface GolfClubPrice {
+export interface GolfCoursePrice {
   id: string;
   golfCourseName: string;
   currentPrice: number;

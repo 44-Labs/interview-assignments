@@ -1,5 +1,5 @@
-import FilterSourceToggleAllButton from './FilterSourceToggleAllButton';
-import FilterSourceButtonList from './FilterSourceButtonList';
+import GolfPriceFilterSourceToggleAllButton from './GolfPriceFilterSourceToggleAllButton';
+import GolfPriceFilterSourceButtonList from './GolfPriceFilterSourceButtonList';
 
 interface FilterSourceCheckBoxProps {
   uniqueSources: string[];
@@ -7,7 +7,7 @@ interface FilterSourceCheckBoxProps {
   setTempSelected: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export default function FilterSourceCheckBox({
+export default function GolfPriceFilterSourceCheckBox({
   uniqueSources,
   tempSelected,
   setTempSelected,
@@ -26,12 +26,12 @@ export default function FilterSourceCheckBox({
 
   return (
     <div className="flex flex-col items-center gap-2 mb-4">
-      <FilterSourceToggleAllButton
+      <GolfPriceFilterSourceToggleAllButton
         allCount={uniqueSources.length}
         selectedCount={tempSelected.length}
         onClick={handleToggleAll}
       />
-      <FilterSourceButtonList sources={uniqueSources} selected={tempSelected} onToggle={handleToggleSource} />
+      <GolfPriceFilterSourceButtonList sources={uniqueSources} selected={tempSelected} onToggle={handleToggleSource} />
     </div>
   );
 }

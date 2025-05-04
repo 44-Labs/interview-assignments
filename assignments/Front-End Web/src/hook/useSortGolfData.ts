@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { GolfClubPrice, SortOrder } from '@/types';
+import { GolfCoursePrice, SortOrder } from '@/types';
 import { getGolfPrices } from '@/services/api';
 
-export function useSortGolfData(initialData: GolfClubPrice[]) {
-  const [data, setData] = useState<GolfClubPrice[]>(initialData);
+export function useSortGolfData(initialData: GolfCoursePrice[]) {
+  const [data, setData] = useState<GolfCoursePrice[]>(initialData);
   const [sortField, setSortField] = useState<'golfCourseName' | 'currentPrice' | ''>('');
   const [sortOrder, setSortOrder] = useState<SortOrder | ''>('');
 

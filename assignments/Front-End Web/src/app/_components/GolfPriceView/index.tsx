@@ -1,25 +1,23 @@
 'use client';
 
-import { GolfClubPrice } from '@/types';
+import { GolfCoursePrice } from '@/types';
 import GolfPriceTable from './GolfPriceTable';
-import FilterBox from '../FilterBox';
-import { GolfPriceComparisonModal } from '../GolfPriceComparisonModal';
+import GolfPriceFilterBox from '../GolfPriceFilterBox';
+import GolfPriceComparisonModal from '../GolfPriceComparisonModal';
 
 interface GolfPriceViewProps {
-  initialData: GolfClubPrice[];
+  initialData: GolfCoursePrice[];
   sourceData: string[];
 }
 
-export function GolfPriceView({ initialData, sourceData }: GolfPriceViewProps) {
+export default function GolfPriceView({ initialData, sourceData }: GolfPriceViewProps) {
   return (
     <>
       <div className="space-y-4">
-        <FilterBox sourceData={sourceData} />
+        <GolfPriceFilterBox sourceData={sourceData} />
         <GolfPriceTable initialData={initialData} />
       </div>
       <GolfPriceComparisonModal />
     </>
   );
 }
-
-export default GolfPriceView;

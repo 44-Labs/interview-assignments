@@ -1,16 +1,20 @@
-import FilterSourceButton from './FilterSourceButton';
+import GolfPriceFilterSourceButton from './GolfPriceFilterSourceButton';
 
-interface Props {
+interface GolfPriceFilterSourceButtonListProps {
   sources: string[];
   selected: string[];
   onToggle: (source: string) => void;
 }
 
-export default function FilterSourceButtonList({ sources, selected, onToggle }: Props) {
+export default function GolfPriceFilterSourceButtonList({
+  sources,
+  selected,
+  onToggle,
+}: GolfPriceFilterSourceButtonListProps) {
   return (
     <div className="flex flex-wrap justify-center gap-2">
       {sources.map(source => (
-        <FilterSourceButton
+        <GolfPriceFilterSourceButton
           key={source}
           source={source}
           selected={selected.includes(source)}

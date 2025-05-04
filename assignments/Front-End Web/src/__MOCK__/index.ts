@@ -1,4 +1,4 @@
-import { GolfClubPrice } from '@/types';
+import { GolfCoursePrice } from '@/types';
 
 const golfCourses = [
   '가평 베네스트',
@@ -43,7 +43,7 @@ function generatePriceWithinRange(basePrice: number) {
   }
 }
 
-const mockData: GolfClubPrice[] = [];
+const mockData: GolfCoursePrice[] = [];
 
 golfCourses.forEach((course, index) => {
   const basePrice = generateRandomPrice(20000, 50000);

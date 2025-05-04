@@ -2,9 +2,9 @@
 
 import { KeyboardEvent, useRef } from 'react';
 import { FiSearch, FiX } from 'react-icons/fi';
-import { Button } from '@/components/common/Button';
+import { BaseButton } from '@/components/common/BaseButton';
 
-interface FilterSearchInputProps {
+interface GolfPriceFilterSearchInputProps {
   value: string;
   setValue: (v: string) => void;
   onApply: () => void;
@@ -12,13 +12,13 @@ interface FilterSearchInputProps {
   className?: string;
 }
 
-export default function FilterSearchInput({
+export default function GolfPriceFilterSearchInput({
   value,
   setValue,
   onApply,
   placeholder,
   className,
-}: FilterSearchInputProps) {
+}: GolfPriceFilterSearchInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -42,9 +42,9 @@ export default function FilterSearchInput({
         className="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400"
       />
       {value && (
-        <Button onClick={() => setValue('')} className="absolute right-2 top-1/2 -translate-y-1/2">
+        <BaseButton onClick={() => setValue('')} className="absolute right-2 top-1/2 -translate-y-1/2">
           <FiX size={18} />
-        </Button>
+        </BaseButton>
       )}
     </div>
   );

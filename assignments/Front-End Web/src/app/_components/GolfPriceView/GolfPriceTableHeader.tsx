@@ -1,4 +1,4 @@
-import { TableRow, TableHeaderCell } from '@/components/common/Table';
+import { BaseTableRow, BaseTableHeaderCell } from '@/components/common/BaseTable';
 import { SortOrder } from '@/types';
 
 interface GolfPriceTableHeaderProps {
@@ -10,8 +10,8 @@ interface GolfPriceTableHeaderProps {
 export default function GolfPriceTableHeader({ sortField, sortOrder, onSort }: GolfPriceTableHeaderProps) {
   return (
     <thead>
-      <TableRow className="bg-gray-100">
-        <TableHeaderCell
+      <BaseTableRow className="bg-gray-100">
+        <BaseTableHeaderCell
           sortable
           sortField={sortField}
           sortOrder={sortOrder}
@@ -19,8 +19,8 @@ export default function GolfPriceTableHeader({ sortField, sortOrder, onSort }: G
           onClick={() => onSort('golfCourseName')}
         >
           골프장명
-        </TableHeaderCell>
-        <TableHeaderCell
+        </BaseTableHeaderCell>
+        <BaseTableHeaderCell
           sortable
           sortField={sortField}
           sortOrder={sortOrder}
@@ -28,11 +28,11 @@ export default function GolfPriceTableHeader({ sortField, sortOrder, onSort }: G
           onClick={() => onSort('currentPrice')}
         >
           현재가
-        </TableHeaderCell>
-        <TableHeaderCell>등락</TableHeaderCell>
-        <TableHeaderCell>거래소</TableHeaderCell>
-        <TableHeaderCell>수집시각</TableHeaderCell>
-      </TableRow>
+        </BaseTableHeaderCell>
+        <BaseTableHeaderCell>등락</BaseTableHeaderCell>
+        <BaseTableHeaderCell>거래소</BaseTableHeaderCell>
+        <BaseTableHeaderCell>수집시각</BaseTableHeaderCell>
+      </BaseTableRow>
     </thead>
   );
 }

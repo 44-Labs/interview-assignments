@@ -1,16 +1,20 @@
-import { Button } from '@/components/common/Button';
+import { BaseButton } from '@/components/common/BaseButton';
 
-interface Props {
+interface GolfPriceFilterSourceToggleAllButtonProps {
   allCount: number;
   selectedCount: number;
   onClick: () => void;
 }
 
-export default function FilterSourceToggleAllButton({ allCount, selectedCount, onClick }: Props) {
+export default function GolfPriceFilterSourceToggleAllButton({
+  allCount,
+  selectedCount,
+  onClick,
+}: GolfPriceFilterSourceToggleAllButtonProps) {
   const isAllSelected = selectedCount === allCount;
   return (
     <div className="flex items-center gap-2 mb-1">
-      <Button
+      <BaseButton
         type="button"
         onClick={onClick}
         className={`
@@ -21,7 +25,7 @@ export default function FilterSourceToggleAllButton({ allCount, selectedCount, o
           }`}
       >
         {isAllSelected ? '전체 해제' : '전체 선택'}
-      </Button>
+      </BaseButton>
       <span className="text-xs text-gray-500">
         출처 <b>{selectedCount}</b> / {allCount}
       </span>

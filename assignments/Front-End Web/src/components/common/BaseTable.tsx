@@ -1,14 +1,14 @@
 import { SortButton } from '../SortButton';
 import { SortOrder } from '@/types';
 
-interface TableBaseProps {
+interface BaseTableProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
   colSpan?: number;
 }
 
-interface TableHeaderCellProps extends TableBaseProps {
+interface BaseTableHeaderCellProps extends BaseTableProps {
   sortable?: boolean;
   onClick?: () => void;
   sortField?: string | null;
@@ -17,7 +17,7 @@ interface TableHeaderCellProps extends TableBaseProps {
   isActive?: boolean;
 }
 
-export function Table({ children, className = '' }: TableBaseProps) {
+export function BaseTable({ children, className = '' }: BaseTableProps) {
   return (
     <div className="overflow-x-auto">
       <table className={`min-w-full table-fixed ${className}`}>{children}</table>
@@ -25,7 +25,7 @@ export function Table({ children, className = '' }: TableBaseProps) {
   );
 }
 
-export function TableRow({ children, className = '', onClick }: TableBaseProps) {
+export function BaseTableRow({ children, className = '', onClick }: BaseTableProps) {
   return (
     <tr className={`border-b border-gray-200 hover:bg-gray-50 ${className}`} onClick={onClick}>
       {children}
@@ -33,7 +33,7 @@ export function TableRow({ children, className = '', onClick }: TableBaseProps) 
   );
 }
 
-export function TableCell({ children, className = '', colSpan }: TableBaseProps) {
+export function BaseTableCell({ children, className = '', colSpan }: BaseTableProps) {
   return (
     <td colSpan={colSpan} className={`px-4 py-3 text-center ${className}`}>
       {children}
@@ -41,14 +41,14 @@ export function TableCell({ children, className = '', colSpan }: TableBaseProps)
   );
 }
 
-export function TableHeaderCell({
+export function BaseTableHeaderCell({
   children,
   className = '',
   sortable,
   sortOrder,
   isActive,
   onClick,
-}: TableHeaderCellProps) {
+}: BaseTableHeaderCellProps) {
   return (
     <th
       className={`

@@ -1,17 +1,17 @@
-import { TableRow, TableCell } from '@/components/common/Table';
-import { GolfClubPrice } from '@/types';
+import { BaseTableRow, BaseTableCell } from '@/components/common/BaseTable';
+import { GolfCoursePrice } from '@/types';
 import { formatDate, isOldData } from '@/lib/util';
 
-interface Props {
-  item: GolfClubPrice;
+interface GolfPriceTableRowProps {
+  item: GolfCoursePrice;
   onClick: () => void;
 }
 
-export default function GolfPriceTableRow({ item, onClick }: Props) {
+export default function GolfPriceTableRow({ item, onClick }: GolfPriceTableRowProps) {
   return (
-    <TableRow className={`cursor-pointer ${isOldData(item.collectedAt) ? 'opacity-50' : ''}`} onClick={onClick}>
-      <TableCell>{item.golfCourseName}</TableCell>
-      <TableCell>
+    <BaseTableRow className={`cursor-pointer ${isOldData(item.collectedAt) ? 'opacity-50' : ''}`} onClick={onClick}>
+      <BaseTableCell>{item.golfCourseName}</BaseTableCell>
+      <BaseTableCell>
         {item.currentPrice.toLocaleString()}원
         {item.isWarning && (
           <span className="ml-2 text-xs text-yellow-600 font-bold">
@@ -19,13 +19,13 @@ export default function GolfPriceTableRow({ item, onClick }: Props) {
             {item.diffPercent.toFixed(1)}%
           </span>
         )}
-      </TableCell>
-      <TableCell className={item.delta > 0 ? 'text-red-500' : item.delta < 0 ? 'text-blue-500' : ''}>
+      </BaseTableCell>
+      <BaseTableCell className={item.delta > 0 ? 'text-red-500' : item.delta < 0 ? 'text-blue-500' : ''}>
         {item.delta > 0 ? '+' : ''}
         {item.delta.toLocaleString()}원
-      </TableCell>
-      <TableCell>{item.source}</TableCell>
-      <TableCell>{formatDate(item.collectedAt)}</TableCell>
-    </TableRow>
+      </BaseTableCell>
+      <BaseTableCell>{item.source}</BaseTableCell>
+      <BaseTableCell>{formatDate(item.collectedAt)}</BaseTableCell>
+    </BaseTableRow>
   );
 }

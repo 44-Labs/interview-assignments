@@ -1,16 +1,16 @@
-import { TableCell, TableRow } from '@/components/common/Table';
+import { BaseTableCell, BaseTableRow } from '@/components/common/BaseTable';
 
-interface Props {
+interface GolfPriceEmptyTableProps {
   colSpan: number;
   message?: string;
 }
 
-export default function GolfPriceEmptyTable({ colSpan, message = '데이터가 없습니다.' }: Props) {
+export default function GolfPriceEmptyTable({ colSpan, message = '데이터가 없습니다.' }: GolfPriceEmptyTableProps) {
   return (
-    <TableRow>
-      <TableCell colSpan={colSpan} className="py-20 text-center text-gray-400">
+    <BaseTableRow>
+      <BaseTableCell colSpan={colSpan} className="py-20 text-center text-gray-400">
         {message}
-      </TableCell>
-    </TableRow>
+      </BaseTableCell>
+    </BaseTableRow>
   );
 }

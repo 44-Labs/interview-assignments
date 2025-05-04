@@ -1,10 +1,10 @@
-import { GolfClubPrice } from '@/types';
+import { GolfCoursePrice } from '@/types';
 
-interface Props {
-  data: GolfClubPrice[];
+interface GolfPriceComparisonListProps {
+  data: GolfCoursePrice[];
 }
 
-export default function GolfPriceComparisonList({ data }: Props) {
+export default function GolfPriceComparisonList({ data }: GolfPriceComparisonListProps) {
   return (
     <ul className="space-y-4">
       {data.map(item => {

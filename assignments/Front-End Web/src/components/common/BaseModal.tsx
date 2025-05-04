@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 
-interface ModalProps {
+interface BaseModalProps {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
 }
 
-export function Modal({ open, onClose, children }: ModalProps) {
+export function BaseModal({ open, onClose, children }: BaseModalProps) {
   useEffect(() => {
     if (!open) return;
     const handleKeyDown = (e: KeyboardEvent) => {

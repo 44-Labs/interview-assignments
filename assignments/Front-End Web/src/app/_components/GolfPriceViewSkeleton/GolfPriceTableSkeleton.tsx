@@ -1,4 +1,4 @@
-import { Table, TableCell, TableHeaderCell, TableRow } from '@/components/common/Table';
+import { BaseTable, BaseTableCell, BaseTableHeaderCell, BaseTableRow } from '@/components/common/BaseTable';
 
 export default function GolfPriceTableSkeleton() {
   const skeletonBaseStyle = 'h-6 bg-gray-200 rounded';
@@ -15,30 +15,30 @@ export default function GolfPriceTableSkeleton() {
 
   return (
     <div className="animate-pulse">
-      <Table>
+      <BaseTable>
         <thead>
-          <TableRow className="bg-gray-100">
+          <BaseTableRow className="bg-gray-100">
             {Object.values(columnWidths).map((width, index) => (
-              <TableHeaderCell key={index}>
+              <BaseTableHeaderCell key={index}>
                 <SkeletonCell width={width} />
-              </TableHeaderCell>
+              </BaseTableHeaderCell>
             ))}
-          </TableRow>
+          </BaseTableRow>
         </thead>
         <tbody>
           {[...Array(20)].map((_, rowIndex) => (
-            <TableRow key={rowIndex}>
+            <BaseTableRow key={rowIndex}>
               {Object.values(columnWidths).map((width, cellIndex) => (
-                <TableCell key={cellIndex}>
+                <BaseTableCell key={cellIndex}>
                   <div className="flex justify-center">
                     <SkeletonCell width={width} />
                   </div>
-                </TableCell>
+                </BaseTableCell>
               ))}
-            </TableRow>
+            </BaseTableRow>
           ))}
         </tbody>
-      </Table>
+      </BaseTable>
     </div>
   );
 }
