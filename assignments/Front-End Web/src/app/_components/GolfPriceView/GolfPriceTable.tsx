@@ -4,14 +4,14 @@ import { useModalStore } from '@/store/useModalStore';
 import GolfPriceTableHeader from './GolfPriceTableHeader';
 import GolfPriceTableBody from './GolfPriceTableBody';
 import { useSortGolfData } from '@/app/_hook/useSortGolfData';
-import { getGolfPrices } from '@/services/api';
+import { golfApi } from '@/services/api';
 
 export default function GolfPriceTable({ initialData }: { initialData: GolfCoursePrice[] }) {
   const { openModal } = useModalStore();
   const { data, sortField, sortOrder, handleSort } = useSortGolfData(initialData);
 
   const handleRowClick = async (golfCourseName: string) => {
-    const data = await getGolfPrices({ golfCourseName });
+    const data = await golfApi.getGolfPrices({ golfCourseName });
     openModal(data);
   };
 

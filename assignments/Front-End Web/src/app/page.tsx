@@ -1,6 +1,6 @@
 import GolfPriceViewSkeleton from '@/app/_components/GolfPriceViewSkeleton';
 import { Suspense } from 'react';
-import { getGolfPrices, getGolfSources } from '@/services/api';
+import { golfApi } from '@/services/api';
 import GolfPriceView from '@/app/_components/GolfPriceView';
 
 interface HomeProps {
@@ -9,8 +9,8 @@ interface HomeProps {
 
 export default async function Home({ searchParams }: HomeProps) {
   const paramsObj = await searchParams;
-  const initialData = await getGolfPrices(paramsObj);
-  const sourceData = await getGolfSources();
+  const initialData = await golfApi.getGolfPrices(paramsObj);
+  const sourceData = await golfApi.getGolfSources();
 
   return (
     <main className="container mx-auto p-4">

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { GolfCoursePrice, SortOrder } from '@/types';
-import { getGolfPrices } from '@/services/api';
+import { golfApi } from '@/services/api';
 
 export function useSortGolfData(initialData: GolfCoursePrice[]) {
   const [data, setData] = useState<GolfCoursePrice[]>(initialData);
@@ -11,7 +11,7 @@ export function useSortGolfData(initialData: GolfCoursePrice[]) {
     const params = new URLSearchParams(window.location.search);
     const sources = params.get('sources') ?? '';
     const golfCourseName = params.get('golfCourseName') ?? '';
-    const data = await getGolfPrices({ sources, golfCourseName, sortField, sortOrder });
+    const data = await golfApi.getGolfPrices({ sources, golfCourseName, sortField, sortOrder });
     setData(data);
   }, [sortField, sortOrder]);
 
