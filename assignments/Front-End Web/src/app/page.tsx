@@ -4,7 +4,7 @@ import { getGolfPrices, getGolfSources } from '@/services/api';
 import GolfPriceView from '@/app/_components/GolfPriceView';
 
 interface HomeProps {
-  searchParams: Record<string, string>;
+  searchParams: Promise<Record<string, string>>;
 }
 
 export default async function Home({ searchParams }: HomeProps) {
