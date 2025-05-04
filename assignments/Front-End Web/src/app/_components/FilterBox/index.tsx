@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import FilterButtons from './FilterButtons';
 import FilterSourceCheckBox from './FilterSourceCheckBox';
 import FilterSearchInput from './FilterSearchInput';
@@ -9,16 +9,15 @@ import FilterSearchInput from './FilterSearchInput';
 export default function FilterBox({ sourceData }: { sourceData: string[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  const [tempSelected, setTempSelected] = useState<string[]>(
-    searchParams.get('sources')?.split(',').filter(Boolean) ?? []
-  );
-  const [inputValue, setInputValue] = useState(searchParams.get('golfCourseName') ?? '');
+  const sources = useMemo(() => searchParams.get('sources')?.split(',').filter(Boolean) ?? [], [searchParams]);
+  const golfCourseName = useMemo(() => searchParams.get('golfCourseName') ?? '', [searchParams]);
+  const [tempSelected, setTempSelected] = useState<string[]>(sources);
+  const [inputValue, setInputValue] = useState(golfCourseName);
 
   useEffect(() => {
-    setTempSelected(searchParams.get('sources')?.split(',').filter(Boolean) ?? []);
-    setInputValue(searchParams.get('golfCourseName') ?? '');
-  }, [searchParams]);
+    setTempSelected(sources);
+    setInputValue(golfCourseName);
+  }, [sources, golfCourseName]);
 
   const handleApplyFilter = () => {
     const params = new URLSearchParams(searchParams.toString());
