@@ -3,7 +3,7 @@ import { GolfCoursePrice } from '@/types';
 import { useModalStore } from '@/store/useModalStore';
 import GolfPriceTableHeader from './GolfPriceTableHeader';
 import GolfPriceTableBody from './GolfPriceTableBody';
-import { useSortGolfData } from '@/hook/useSortGolfData';
+import { useSortGolfData } from '@/app/_hook/useSortGolfData';
 import { getGolfPrices } from '@/services/api';
 
 export default function GolfPriceTable({ initialData }: { initialData: GolfCoursePrice[] }) {

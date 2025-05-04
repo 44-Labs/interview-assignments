@@ -15,22 +15,32 @@ export async function getGolfPrices(searchParams?: Record<string, string>): Prom
     }
 
     const response = await fetch(`${API_URL}/api/golf-prices?${params}`, {
+      method: 'GET',
       cache: 'no-store',
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch golf prices');
+    if (response.ok) {
+      const data = await response.json();
+      return data.data;
     }
 
-    const data = await response.json();
-    return data.data;
+    const errorBody = await response.json();
+    throw new Error(errorBody.message);
   } catch (error) {
     throw error;
   }
 }
 
 export async function getGolfSources(): Promise<string[]> {
-  const response = await fetch(`${API_URL}/api/golf-sources`);
-  const data = await response.json();
-  return data.data;
+  const response = await fetch(`${API_URL}/api/golf-sources`, {
+    method: 'GET',
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    return data.data;
+  }
+
+  const errorBody = await response.json();
+  throw new Error(errorBody.message);
 }
