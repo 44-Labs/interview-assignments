@@ -13,7 +13,7 @@ export default function FilterSourceToggleAllButton({ allCount, selectedCount, o
       <Button
         type="button"
         onClick={onClick}
-        className={`px-3 py-1 rounded-full text-xs font-semibold border transition
+        className={`
           ${
             isAllSelected
               ? 'bg-blue-500 text-white border-blue-500 shadow'
