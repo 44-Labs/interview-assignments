@@ -15,7 +15,7 @@ export default function GolfPriceTableHeader({ sortField, sortOrder, onSort }: G
           sortable
           sortField={sortField}
           sortOrder={sortOrder}
-          fieldName="golfCourseName"
+          isActive={sortField === 'golfCourseName'}
           onClick={() => onSort('golfCourseName')}
         >
           골프장명
@@ -24,7 +24,7 @@ export default function GolfPriceTableHeader({ sortField, sortOrder, onSort }: G
           sortable
           sortField={sortField}
           sortOrder={sortOrder}
-          fieldName="currentPrice"
+          isActive={sortField === 'currentPrice'}
           onClick={() => onSort('currentPrice')}
         >
           현재가

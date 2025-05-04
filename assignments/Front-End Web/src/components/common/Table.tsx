@@ -14,12 +14,13 @@ interface TableHeaderCellProps extends TableBaseProps {
   sortField?: string | null;
   sortOrder?: SortOrder;
   fieldName?: string;
+  isActive?: boolean;
 }
 
 export function Table({ children, className = '' }: TableBaseProps) {
   return (
     <div className="overflow-x-auto">
-      <table className={`min-w-full table-auto ${className}`}>{children}</table>
+      <table className={`min-w-full table-fixed ${className}`}>{children}</table>
     </div>
   );
 }
@@ -44,13 +45,10 @@ export function TableHeaderCell({
   children,
   className = '',
   sortable,
-  sortField,
   sortOrder,
-  fieldName,
+  isActive,
   onClick,
 }: TableHeaderCellProps) {
-  const isActive = sortField === fieldName;
-
   return (
     <th
       className={`
@@ -62,7 +60,7 @@ export function TableHeaderCell({
     >
       <div className="flex items-center justify-center gap-1">
         {children}
-        {sortable && onClick && <SortButton active={isActive} sortOrder={sortOrder} onClick={onClick} />}
+        {sortable && onClick && <SortButton active={isActive} sortOrder={sortOrder ?? null} onClick={onClick} />}
       </div>
     </th>
   );

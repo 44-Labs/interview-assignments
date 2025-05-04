@@ -1,7 +1,7 @@
 import { Button } from './common/Button';
 import { SortOrder } from '@/types';
 interface SortButtonProps {
-  active: boolean;
+  active?: boolean;
   sortOrder: SortOrder;
   onClick: () => void;
 }
