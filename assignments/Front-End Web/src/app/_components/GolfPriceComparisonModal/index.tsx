@@ -11,7 +11,7 @@ export function GolfPriceComparisonModal() {
     <Modal open={open} onClose={closeModal}>
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">{data[0].golfCourseName}</h2>
       <GolfPriceComparisonList data={data} />
-      <div className="mt-6 text-center">
+      <div className="mt-6 text-center flex justify-center">
         <Button
           onClick={closeModal}
           className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"

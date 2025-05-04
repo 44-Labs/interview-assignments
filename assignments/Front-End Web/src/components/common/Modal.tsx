@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Button } from './Button';
 
 interface ModalProps {
   open: boolean;
@@ -27,13 +26,6 @@ export function Modal({ open, onClose, children }: ModalProps) {
         className="bg-white rounded-lg shadow-lg min-w-[320px] max-w-lg w-full p-6 relative"
         onClick={e => e.stopPropagation()}
       >
-        <Button
-          className="absolute top-4 right-5 text-gray-400 hover:text-gray-600 text-2xl cursor-pointer"
-          onClick={onClose}
-          aria-label="닫기"
-        >
-          ×
-        </Button>
         {children}
       </div>
     </div>

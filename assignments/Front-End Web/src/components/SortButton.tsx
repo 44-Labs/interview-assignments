@@ -1,4 +1,3 @@
-import { Button } from './common/Button';
 import { SortOrder } from '@/types';
 interface SortButtonProps {
   active?: boolean;
@@ -18,9 +17,9 @@ export const SortButton = ({ active, sortOrder, onClick }: SortButtonProps) => {
   `;
 
   return (
-    <Button onClick={onClick} className="ml-2 focus:outline-none cursor-pointer flex flex-col gap-[1px]">
+    <button onClick={onClick} className="ml-2 focus:outline-none  flex flex-col gap-[1px]">
       <span className={getArrowStyle(true)}>▲</span>
       <span className={getArrowStyle(false)}>▼</span>
-    </Button>
+    </button>
   );
 };
