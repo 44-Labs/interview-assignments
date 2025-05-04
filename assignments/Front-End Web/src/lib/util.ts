@@ -1,5 +1,3 @@
-import { GolfClubPrice, SortOrder } from '@/types';
-
 export const formatDate = (date: string) => {
   const d = new Date(date);
   const today = new Date();
@@ -31,25 +29,4 @@ export function isOldData(collectedAt: string, days = 3) {
   const diffMs = now.getTime() - collected.getTime();
   const diffDays = diffMs / (1000 * 60 * 60 * 24);
   return diffDays >= days;
-}
-
-export function sortGolfPrices(
-  data: GolfClubPrice[],
-  sortField: 'golfCourseName' | 'currentPrice',
-  sortOrder: SortOrder
-) {
-  const sorted = [...data];
-  sorted.sort((a, b) => {
-    const aValue = a[sortField];
-    const bValue = b[sortField];
-    if (sortField === 'golfCourseName') {
-      return sortOrder === 'asc'
-        ? String(aValue).localeCompare(String(bValue))
-        : String(bValue).localeCompare(String(aValue));
-    } else if (sortField === 'currentPrice') {
-      return sortOrder === 'asc' ? (aValue as number) - (bValue as number) : (bValue as number) - (aValue as number);
-    }
-    return 0;
-  });
-  return sorted;
 }
