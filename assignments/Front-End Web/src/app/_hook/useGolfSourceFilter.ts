@@ -1,8 +1,7 @@
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
 export function useGolfSourceFilter() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const initialSources = useMemo(() => searchParams.get('sources')?.split(',').filter(Boolean) ?? [], [searchParams]);
   const [tempSelected, setTempSelected] = useState<string[]>(initialSources);
@@ -17,13 +16,11 @@ export function useGolfSourceFilter() {
     } else {
       params.delete('sources');
     }
-    router.replace(`?${params.toString()}`);
   };
 
   const resetSources = (params: URLSearchParams) => {
     setTempSelected([]);
     params.delete('sources');
-    router.replace(`?${params.toString()}`);
   };
 
   return { tempSelected, setTempSelected, applySources, resetSources };

@@ -5,26 +5,33 @@ import GolfPriceFilterSourceCheckBox from './GolfPriceFilterSourceCheckBox';
 import GolfPriceFilterSearchInput from './GolfPriceFilterSearchInput';
 import { useGolfCourseNameFilter } from '@/app/_hook/useGolfCourseNameFilter';
 import useGolfSourceFilter from '@/app/_hook/useGolfSourceFilter';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 export default function GolfPriceFilterBox({ sourceData }: { sourceData: string[] }) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const params = new URLSearchParams(searchParams.toString());
   const { tempSelected, setTempSelected, applySources, resetSources } = useGolfSourceFilter();
   const { inputValue, setInputValue, applyInput, resetInput } = useGolfCourseNameFilter();
+  const updateUrl = () => {
+    router.replace(`?${params.toString()}`, { scroll: false });
+  };
 
   const handleApplyInput = () => {
     applyInput(params);
+    updateUrl();
   };
 
   const handleApplyFilter = () => {
     applySources(params);
     applyInput(params);
+    updateUrl();
   };
 
   const handleResetFilter = () => {
     resetSources(params);
     resetInput(params);
+    updateUrl();
   };
 
   return (

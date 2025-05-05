@@ -20,8 +20,13 @@ export default function GolfPriceFilterSearchInput({
 }: GolfPriceFilterSearchInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (e.nativeEvent.isComposing) {
+      return;
+    }
+
+    if (e.key === 'Enter' && inputRef.current) {
+      e.preventDefault();
       onApply();
     }
   };
