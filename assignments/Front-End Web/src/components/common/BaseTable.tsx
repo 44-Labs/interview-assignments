@@ -15,12 +15,13 @@ interface BaseTableHeaderCellProps extends BaseTableProps {
   sortOrder?: SortOrder;
   fieldName?: string;
   isActive?: boolean;
+  width?: string;
 }
 
 export function BaseTable({ children, className = '' }: BaseTableProps) {
   return (
     <div className="overflow-x-auto">
-      <table className={`min-w-full table-fixed ${className}`}>{children}</table>
+      <table className={`w-full table-fixed ${className}`}>{children}</table>
     </div>
   );
 }
@@ -48,11 +49,12 @@ export function BaseTableHeaderCell({
   sortOrder,
   isActive,
   onClick,
+  width = 'w-1/5',
 }: BaseTableHeaderCellProps) {
   return (
     <th
       className={`
-          px-4 py-2 text-center 
+          ${width} px-4 py-2 text-center 
           ${sortable ? 'cursor-pointer hover:bg-gray-200 group' : ''} 
           ${className}
         `}

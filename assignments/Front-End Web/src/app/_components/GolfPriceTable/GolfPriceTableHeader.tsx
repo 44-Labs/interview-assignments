@@ -12,6 +12,7 @@ export default function GolfPriceTableHeader({ sortField, sortOrder, onSort }: G
     <thead>
       <BaseTableRow className="bg-gray-100">
         <BaseTableHeaderCell
+          width="w-2/5"
           sortable
           sortField={sortField}
           sortOrder={sortOrder}
@@ -21,6 +22,7 @@ export default function GolfPriceTableHeader({ sortField, sortOrder, onSort }: G
           골프장명
         </BaseTableHeaderCell>
         <BaseTableHeaderCell
+          width="w-1/5"
           sortable
           sortField={sortField}
           sortOrder={sortOrder}
@@ -29,9 +31,9 @@ export default function GolfPriceTableHeader({ sortField, sortOrder, onSort }: G
         >
           현재가
         </BaseTableHeaderCell>
-        <BaseTableHeaderCell>등락</BaseTableHeaderCell>
-        <BaseTableHeaderCell>거래소</BaseTableHeaderCell>
-        <BaseTableHeaderCell>수집시각</BaseTableHeaderCell>
+        <BaseTableHeaderCell width="w-1/5">등락</BaseTableHeaderCell>
+        <BaseTableHeaderCell width="w-1/5">거래소</BaseTableHeaderCell>
+        <BaseTableHeaderCell width="w-1/5">수집시각</BaseTableHeaderCell>
       </BaseTableRow>
     </thead>
   );
