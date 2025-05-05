@@ -14,7 +14,7 @@ export default function GolfPriceTableSkeleton() {
   const SkeletonCell = ({ width }: { width: string }) => <div className={`${skeletonBaseStyle} ${width}`}></div>;
 
   return (
-    <div className="animate-pulse">
+    <div className="animate-pulse px-50">
       <BaseTable>
         <thead>
           <BaseTableRow className="bg-gray-100">
