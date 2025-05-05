@@ -4,15 +4,24 @@ import { golfApi } from '@/services/api';
 
 type SortableField = keyof GolfCoursePrice | '';
 
-interface UseSortGolfDataProps {
+interface useGolfDataSortingProps {
   initialData: GolfCoursePrice[];
   searchParams?: Record<string, string>;
 }
 
-export function useSortGolfData({ initialData, searchParams }: UseSortGolfDataProps) {
+export function useGolfDataSorting({ initialData, searchParams }: useGolfDataSortingProps) {
   const [data, setData] = useState<GolfCoursePrice[]>(initialData);
   const [sortField, setSortField] = useState<SortableField>('');
   const [sortOrder, setSortOrder] = useState<SortOrder | ''>('');
+
+  useEffect(() => {
+    const currentSearchTerm = searchParams?.golfCourseName || '';
+    if (currentSearchTerm !== '') {
+      setSortField('');
+      setSortOrder('');
+      setData(initialData);
+    }
+  }, [searchParams?.golfCourseName, initialData]);
 
   const fetchData = useCallback(async () => {
     if (!sortField) {

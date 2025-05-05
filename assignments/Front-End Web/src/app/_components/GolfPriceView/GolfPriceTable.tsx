@@ -3,7 +3,7 @@ import { GolfCoursePrice } from '@/types';
 import { useModalStore } from '@/store/useModalStore';
 import GolfPriceTableHeader from './GolfPriceTableHeader';
 import GolfPriceTableBody from './GolfPriceTableBody';
-import { useSortGolfData } from '@/app/_hook/useSortGolfData';
+import { useGolfDataSorting } from '@/app/_hook/useGolfDataSorting';
 
 export default function GolfPriceTable({
   initialData,
@@ -13,7 +13,7 @@ export default function GolfPriceTable({
   searchParams: Record<string, string>;
 }) {
   const { openModal } = useModalStore();
-  const { data, sortField, sortOrder, handleSort } = useSortGolfData({
+  const { data, sortField, sortOrder, handleSort } = useGolfDataSorting({
     initialData,
     searchParams,
   });
