@@ -15,7 +15,7 @@ export function useGolfDataSorting({ initialData, searchParams }: useGolfDataSor
   const [sortOrder, setSortOrder] = useState<SortOrder | ''>('');
 
   const fetchData = useCallback(async () => {
-    if (!sortField) {
+    if (!sortField || !sortOrder) {
       setData(initialData);
       return;
     }
@@ -42,13 +42,13 @@ export function useGolfDataSorting({ initialData, searchParams }: useGolfDataSor
   }, [fetchData]);
 
   useEffect(() => {
-    const currentSearchTerm = searchParams?.golfCourseName || '';
-    if (currentSearchTerm !== '') {
+    const hasFilterChanged = searchParams?.golfCourseName || searchParams?.sources;
+    if (hasFilterChanged) {
       setSortField('');
       setSortOrder('');
       setData(initialData);
     }
-  }, [searchParams?.golfCourseName, initialData]);
+  }, [searchParams?.golfCourseName, searchParams?.sources, initialData]);
 
   return {
     data,

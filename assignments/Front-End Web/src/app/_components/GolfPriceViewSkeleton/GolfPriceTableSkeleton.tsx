@@ -28,7 +28,7 @@ export default function GolfPriceTableSkeleton() {
         <tbody>
           {[...Array(20)].map((_, rowIndex) => (
             <BaseTableRow key={rowIndex}>
-              {Object.entries(columnWidths).map(([key, width]) => (
+              {Object.entries(columnWidths).map(([key]) => (
                 <BaseTableCell key={key}>
                   <div className="flex justify-center">
                     <SkeletonCell width="w-24" />
