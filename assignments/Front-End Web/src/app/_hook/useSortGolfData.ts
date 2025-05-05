@@ -2,30 +2,32 @@ import { useCallback, useEffect, useState } from 'react';
 import { GolfCoursePrice, SortOrder } from '@/types';
 import { golfApi } from '@/services/api';
 
-export function useSortGolfData(initialData: GolfCoursePrice[]) {
+type SortableField = keyof GolfCoursePrice | '';
+
+interface UseSortGolfDataProps {
+  initialData: GolfCoursePrice[];
+  searchParams?: Partial<Record<string, string>>;
+}
+
+export function useSortGolfData({ initialData, searchParams = {} }: UseSortGolfDataProps) {
   const [data, setData] = useState<GolfCoursePrice[]>(initialData);
-  const [sortField, setSortField] = useState<'golfCourseName' | 'currentPrice' | ''>('');
+  const [sortField, setSortField] = useState<SortableField>('');
   const [sortOrder, setSortOrder] = useState<SortOrder | ''>('');
 
   const fetchData = useCallback(async () => {
-    const params = new URLSearchParams(window.location.search);
-    const sources = params.get('sources') ?? '';
-    const golfCourseName = params.get('golfCourseName') ?? '';
-    const data = await golfApi.getGolfPrices({ sources, golfCourseName, sortField, sortOrder });
+    const data = await golfApi.getGolfPrices({
+      ...searchParams,
+      sortField,
+      sortOrder,
+    });
     setData(data);
-  }, [sortField, sortOrder]);
+  }, [searchParams, sortField, sortOrder]);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  useEffect(() => {
-    setData(initialData);
-    setSortField('');
-    setSortOrder('');
-  }, [initialData]);
-
-  const handleSort = (field: 'golfCourseName' | 'currentPrice') => {
+  const handleSort = (field: SortableField) => {
     if (sortField === field) {
       setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'));
     } else {

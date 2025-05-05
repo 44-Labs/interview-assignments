@@ -8,14 +8,15 @@ import GolfPriceComparisonModal from '../GolfPriceComparisonModal';
 interface GolfPriceViewProps {
   initialData: GolfCoursePrice[];
   sourceData: string[];
+  searchParams: Record<string, string>;
 }
 
-export default function GolfPriceView({ initialData, sourceData }: GolfPriceViewProps) {
+export default function GolfPriceView({ initialData, sourceData, searchParams }: GolfPriceViewProps) {
   return (
     <>
       <div className="space-y-4">
         <GolfPriceFilterBox sourceData={sourceData} />
-        <GolfPriceTable initialData={initialData} />
+        <GolfPriceTable initialData={initialData} searchParams={searchParams} />
       </div>
       <GolfPriceComparisonModal />
     </>
