@@ -14,15 +14,6 @@ export function useGolfDataSorting({ initialData, searchParams }: useGolfDataSor
   const [sortField, setSortField] = useState<SortableField>('');
   const [sortOrder, setSortOrder] = useState<SortOrder | ''>('');
 
-  useEffect(() => {
-    const currentSearchTerm = searchParams?.golfCourseName || '';
-    if (currentSearchTerm !== '') {
-      setSortField('');
-      setSortOrder('');
-      setData(initialData);
-    }
-  }, [searchParams?.golfCourseName, initialData]);
-
   const fetchData = useCallback(async () => {
     if (!sortField) {
       setData(initialData);
@@ -37,10 +28,6 @@ export function useGolfDataSorting({ initialData, searchParams }: useGolfDataSor
     setData(data);
   }, [sortField, searchParams, sortOrder, initialData]);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
   const handleSort = (field: SortableField) => {
     if (sortField === field) {
       setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'));
@@ -49,6 +36,19 @@ export function useGolfDataSorting({ initialData, searchParams }: useGolfDataSor
       setSortOrder('desc');
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  useEffect(() => {
+    const currentSearchTerm = searchParams?.golfCourseName || '';
+    if (currentSearchTerm !== '') {
+      setSortField('');
+      setSortOrder('');
+      setData(initialData);
+    }
+  }, [searchParams?.golfCourseName, initialData]);
 
   return {
     data,

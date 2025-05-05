@@ -1,3 +1,5 @@
+'use client';
+
 import { BaseTable } from '@/components/common/BaseTable';
 import { GolfCoursePrice } from '@/types';
 import { useModalStore } from '@/store/useModalStore';

@@ -1,3 +1,5 @@
+'use client';
+
 import { BaseButton } from '@/components/common/BaseButton';
 import { BaseModal } from '@/components/common/BaseModal';
 import { useModalStore } from '@/store/useModalStore';

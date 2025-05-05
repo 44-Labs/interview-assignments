@@ -6,10 +6,6 @@ export function useGolfSourceFilter() {
   const initialSources = useMemo(() => searchParams.get('sources')?.split(',').filter(Boolean) ?? [], [searchParams]);
   const [tempSelected, setTempSelected] = useState<string[]>(initialSources);
 
-  useEffect(() => {
-    setTempSelected(initialSources);
-  }, [initialSources]);
-
   const applySources = (params: URLSearchParams) => {
     if (tempSelected.length) {
       params.set('sources', tempSelected.join(','));
@@ -22,6 +18,10 @@ export function useGolfSourceFilter() {
     setTempSelected([]);
     params.delete('sources');
   };
+
+  useEffect(() => {
+    setTempSelected(initialSources);
+  }, [initialSources]);
 
   return { tempSelected, setTempSelected, applySources, resetSources };
 }

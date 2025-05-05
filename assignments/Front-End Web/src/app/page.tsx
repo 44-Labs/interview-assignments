@@ -1,22 +1,38 @@
-import GolfPriceViewSkeleton from '@/app/_components/GolfPriceViewSkeleton';
 import { Suspense } from 'react';
 import { golfApi } from '@/services/api';
-import GolfPriceView from '@/app/_components/GolfPriceView';
+import GolfPriceComparisonModal from './_components/GolfPriceComparisonModal';
+import GolfPriceFilterBox from './_components/GolfPriceFilterBox';
+import GolfPriceTable from './_components/GolfPriceView/GolfPriceTable';
+import GolfPriceFilterBoxSkeleton from './_components/GolfPriceViewSkeleton/GolfPriceFilterBoxSkeleton';
+import GolfPriceTableSkeleton from './_components/GolfPriceViewSkeleton/GolfPriceTableSkeleton';
 
 interface HomeProps {
   searchParams: Promise<Record<string, string>>;
 }
 
-export default async function Home({ searchParams }: HomeProps) {
+async function GolfPriceFilterBoxLoader() {
+  const sourceData = await golfApi.getGolfSources();
+  return <GolfPriceFilterBox sourceData={sourceData} />;
+}
+
+async function GolfPriceTableLoader({ searchParams }: HomeProps) {
   const paramsObj = await searchParams;
   const initialData = await golfApi.getGolfPrices(paramsObj);
-  const sourceData = await golfApi.getGolfSources();
+  return <GolfPriceTable initialData={initialData} searchParams={paramsObj} />;
+}
 
+export default async function Home({ searchParams }: HomeProps) {
   return (
     <main className="container mx-auto p-4">
-      <Suspense fallback={<GolfPriceViewSkeleton />}>
-        <GolfPriceView initialData={initialData} sourceData={sourceData} searchParams={paramsObj} />
-      </Suspense>
+      <div className="space-y-4">
+        <Suspense fallback={<GolfPriceFilterBoxSkeleton />}>
+          <GolfPriceFilterBoxLoader />
+        </Suspense>
+        <Suspense fallback={<GolfPriceTableSkeleton />}>
+          <GolfPriceTableLoader searchParams={searchParams} />
+        </Suspense>
+      </div>
+      <GolfPriceComparisonModal />
     </main>
   );
 }
