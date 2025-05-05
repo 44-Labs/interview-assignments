@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { golfApi } from '@/services/api';
 import GolfPriceComparisonModal from './_components/GolfPriceComparisonModal';
 import GolfPriceFilterBox from './_components/GolfPriceFilterBox';
-import GolfPriceTable from './_components/GolfPriceView/GolfPriceTable';
+import GolfPriceTable from './_components/GolfPriceTable';
 import GolfPriceFilterBoxSkeleton from './_components/GolfPriceViewSkeleton/GolfPriceFilterBoxSkeleton';
 import GolfPriceTableSkeleton from './_components/GolfPriceViewSkeleton/GolfPriceTableSkeleton';
 
