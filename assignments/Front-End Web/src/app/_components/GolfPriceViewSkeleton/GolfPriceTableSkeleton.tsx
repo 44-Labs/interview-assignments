@@ -4,11 +4,11 @@ export default function GolfPriceTableSkeleton() {
   const skeletonBaseStyle = 'h-6 bg-gray-200 rounded animate-pulse';
 
   const columnWidths = {
-    golfCourseName: 'w-32',
-    currentPrice: 'w-24',
-    delta: 'w-20',
-    source: 'w-28',
-    collectedAt: 'w-32',
+    golfCourseName: 'w-2/5',
+    currentPrice: 'w-1/5',
+    delta: 'w-1/5',
+    source: 'w-1/5',
+    collectedAt: 'w-1/5',
   };
 
   const SkeletonCell = ({ width }: { width: string }) => <div className={`${skeletonBaseStyle} ${width}`} />;
@@ -19,8 +19,8 @@ export default function GolfPriceTableSkeleton() {
         <thead>
           <BaseTableRow className="bg-gray-100">
             {Object.entries(columnWidths).map(([key, width]) => (
-              <BaseTableHeaderCell key={key}>
-                <SkeletonCell width={width} />
+              <BaseTableHeaderCell key={key} width={width}>
+                <SkeletonCell width="w-24" />
               </BaseTableHeaderCell>
             ))}
           </BaseTableRow>
@@ -31,7 +31,7 @@ export default function GolfPriceTableSkeleton() {
               {Object.entries(columnWidths).map(([key, width]) => (
                 <BaseTableCell key={key}>
                   <div className="flex justify-center">
-                    <SkeletonCell width={width} />
+                    <SkeletonCell width="w-24" />
                   </div>
                 </BaseTableCell>
               ))}
