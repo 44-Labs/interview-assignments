@@ -6,6 +6,8 @@ import GolfPriceTable from './_components/GolfPriceTable';
 import GolfPriceFilterBoxSkeleton from './_components/GolfPriceViewSkeleton/GolfPriceFilterBoxSkeleton';
 import GolfPriceTableSkeleton from './_components/GolfPriceViewSkeleton/GolfPriceTableSkeleton';
 
+export const dynamic = 'force-dynamic';
+
 interface HomeProps {
   searchParams: Promise<Record<string, string>>;
 }
